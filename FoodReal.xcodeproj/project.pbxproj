@@ -56,15 +56,39 @@
 		D146E917298A415400845BA5 /* FoodReal */ = {
 			isa = PBXGroup;
 			children = (
+				D1A73526298C6AAA00D0956E /* View */,
+				D1A73525298C6A9E00D0956E /* Model */,
+				D1A73527298C6AB200D0956E /* Controller */,
 				D146E918298A415400845BA5 /* AppDelegate.swift */,
 				D146E91A298A415400845BA5 /* SceneDelegate.swift */,
-				D146E91C298A415400845BA5 /* ViewController.swift */,
 				D146E91E298A415400845BA5 /* Main.storyboard */,
 				D146E921298A415400845BA5 /* Assets.xcassets */,
 				D146E923298A415400845BA5 /* LaunchScreen.storyboard */,
 				D146E926298A415400845BA5 /* Info.plist */,
 			);
 			path = FoodReal;
+			sourceTree = "<group>";
+		};
+		D1A73525298C6A9E00D0956E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D1A73526298C6AAA00D0956E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D1A73527298C6AB200D0956E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D146E91C298A415400845BA5 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +324,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kimlonghor.FoodReal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.twoseniors.FoodReal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -328,7 +352,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kimlonghor.FoodReal;
+				PRODUCT_BUNDLE_IDENTIFIER = com.twoseniors.FoodReal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

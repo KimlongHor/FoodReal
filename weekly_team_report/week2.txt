@@ -1,11 +1,15 @@
 Week 2: Team Report
-Project title: FoodReal
 
+
+Project title: FoodReal
 Team Name: Two Seniors
 Current leader: Yunseo Claire Han
+
+
 Members: 
 Kimlong Hor
 Yunseo Claire Han
+
 
 Job Assignments: 
 Kimlong Hor (Front end lead)
@@ -14,12 +18,14 @@ Plan UI structure and components
 User onboarding instructions
 Notification
 Help with backend
+
 Yunseo Han (Back end lead)
 Set up Firestore
 Set up user login
 Plan database collection and document structure
 Write CRUD Operations
 Help with UI
+
 
 2 weeks milestone:
 Plan UI structure and components

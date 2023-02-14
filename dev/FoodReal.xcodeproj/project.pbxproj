@@ -15,15 +15,16 @@
 		D146E920298A415400845BA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E91E298A415400845BA5 /* Main.storyboard */; };
 		D146E922298A415400845BA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D146E921298A415400845BA5 /* Assets.xcassets */; };
 		D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E923298A415400845BA5 /* LaunchScreen.storyboard */; };
+		D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148BFDE299303CB002BC463 /* UIViewExtensions.swift */; };
 		D1A1F38B298F8D3D008B81CE /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1F389298F8D3D008B81CE /* PostCollectionViewCell.swift */; };
 		D1A1F38C298F8D3D008B81CE /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A1F38A298F8D3D008B81CE /* PostCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		055C38272409D0ABB0953B89 /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
 		37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7623CB2EE73996EA93946A4 /* Pods-FoodReal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.release.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.release.xcconfig"; sourceTree = "<group>"; };
+		B14FECF04345A97CB45C2758 /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
+		B7BB25C925D1A33CEA5795C7 /* Pods-FoodReal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.release.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.release.xcconfig"; sourceTree = "<group>"; };
 		D146E915298A415400845BA5 /* FoodReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D146E918298A415400845BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D146E91A298A415400845BA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +33,7 @@
 		D146E921298A415400845BA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D146E924298A415400845BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D146E926298A415400845BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D148BFDE299303CB002BC463 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D1A1F389298F8D3D008B81CE /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCollectionViewCell.swift; path = FoodReal/PostCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D1A1F38A298F8D3D008B81CE /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostCollectionViewCell.xib; path = FoodReal/PostCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -51,8 +53,8 @@
 		974D8C68D2D6705EEFCF183D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				055C38272409D0ABB0953B89 /* Pods-FoodReal.debug.xcconfig */,
-				C7623CB2EE73996EA93946A4 /* Pods-FoodReal.release.xcconfig */,
+				B14FECF04345A97CB45C2758 /* Pods-FoodReal.debug.xcconfig */,
+				B7BB25C925D1A33CEA5795C7 /* Pods-FoodReal.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -95,9 +97,18 @@
 				D146E91E298A415400845BA5 /* Main.storyboard */,
 				D146E921298A415400845BA5 /* Assets.xcassets */,
 				D146E923298A415400845BA5 /* LaunchScreen.storyboard */,
+				D148BFDD2993039D002BC463 /* Helpers */,
 				D146E926298A415400845BA5 /* Info.plist */,
 			);
 			path = FoodReal;
+			sourceTree = "<group>";
+		};
+		D148BFDD2993039D002BC463 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D148BFDE299303CB002BC463 /* UIViewExtensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D1A73525298C6A9E00D0956E /* Model */ = {
@@ -242,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A1F38B298F8D3D008B81CE /* PostCollectionViewCell.swift in Sources */,
+				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
 				D146E919298A415400845BA5 /* AppDelegate.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,
@@ -386,7 +398,7 @@
 		};
 		D146E92A298A415400845BA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 055C38272409D0ABB0953B89 /* Pods-FoodReal.debug.xcconfig */;
+			baseConfigurationReference = B14FECF04345A97CB45C2758 /* Pods-FoodReal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -416,7 +428,7 @@
 		};
 		D146E92B298A415400845BA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7623CB2EE73996EA93946A4 /* Pods-FoodReal.release.xcconfig */;
+			baseConfigurationReference = B7BB25C925D1A33CEA5795C7 /* Pods-FoodReal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

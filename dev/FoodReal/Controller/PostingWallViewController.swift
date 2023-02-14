@@ -12,14 +12,14 @@ class PostingWallViewController: UIViewController {
 
     @IBOutlet weak var postCollectionView: UICollectionView!
     
-    private var posts = ["1", "2", "3"]
+    fileprivate var posts = ["1", "2", "3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPostCollectionView()
     }
     
-    private func setupPostCollectionView() {
+    fileprivate func setupPostCollectionView() {
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PostCollectionViewCell")

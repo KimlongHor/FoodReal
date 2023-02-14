@@ -17,6 +17,7 @@
 		D146E920298A415400845BA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E91E298A415400845BA5 /* Main.storyboard */; };
 		D146E922298A415400845BA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D146E921298A415400845BA5 /* Assets.xcassets */; };
 		D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E923298A415400845BA5 /* LaunchScreen.storyboard */; };
+		D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148BFDE299303CB002BC463 /* UIViewExtensions.swift */; };
 		D1A1F38B298F8D3D008B81CE /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A1F389298F8D3D008B81CE /* PostCollectionViewCell.swift */; };
 		D1A1F38C298F8D3D008B81CE /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1A1F38A298F8D3D008B81CE /* PostCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		D146E921298A415400845BA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D146E924298A415400845BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D146E926298A415400845BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D148BFDE299303CB002BC463 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D1A1F389298F8D3D008B81CE /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCollectionViewCell.swift; path = FoodReal/PostCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D1A1F38A298F8D3D008B81CE /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = PostCollectionViewCell.xib; path = FoodReal/PostCollectionViewCell.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -99,9 +101,18 @@
 				D146E91E298A415400845BA5 /* Main.storyboard */,
 				D146E921298A415400845BA5 /* Assets.xcassets */,
 				D146E923298A415400845BA5 /* LaunchScreen.storyboard */,
+				D148BFDD2993039D002BC463 /* Helpers */,
 				D146E926298A415400845BA5 /* Info.plist */,
 			);
 			path = FoodReal;
+			sourceTree = "<group>";
+		};
+		D148BFDD2993039D002BC463 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D148BFDE299303CB002BC463 /* UIViewExtensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D1A73525298C6A9E00D0956E /* Model */ = {
@@ -248,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A1F38B298F8D3D008B81CE /* PostCollectionViewCell.swift in Sources */,
+				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
 				D146E919298A415400845BA5 /* AppDelegate.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,

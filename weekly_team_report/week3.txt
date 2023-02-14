@@ -1,0 +1,110 @@
+Week 3: Team Report
+
+
+Project title: FoodReal
+Team Name: Two Seniors
+Current leader: Yunseo Claire Han
+
+
+Members: 
+Kimlong Hor
+Yunseo Claire Han
+
+
+Job assignment per individual:
+Kimlong Hor (Front end lead)
+Posting wall
+Plan UI structure and components
+User onboarding instructions
+Notification
+Help with backend
+
+Yunseo Han (Back end lead)
+Set up Firestore
+Set up user login
+Plan database collection and document structure
+Write CRUD Operations
+Help with UI
+
+
+Milestones:
+Week 2
+- Plan UI structure and components
+- Set up Firestore project
+
+Week 4
+- Plan database collection and document structure
+- Write Create and Read operation for posting wall
+- Base UI implementation of posting wall
+
+Week 6
+- Posting wall with functionality
+- Set up firebase authentication
+
+Week 8
+- Implement picture taking functionality
+- Write rest of CRUD operation
+
+Week 10
+- User onboarding screens
+- Implement notification
+
+Week 12
+- Polish up the app
+- Test the app
+
+
+Technologies:
+Frontend:
+- Swift
+- SwiftUI
+- UIKit
+
+Backend:
+- Cloud Firestore
+
+Tools:
+- XCode
+
+
+List the milestones that have been accomplished as a team:
+Milestone Week 2
+- Plan UI structure and components
+- Set up Firestore project
+- As a team, we currently have no blockers
+
+
+The task accomplished
+Kimlong Hor:
+- Plan UI structure and components
+
+Yunseo Han:
+- Set up Firestore project
+- Plan database collection and document structure
+
+
+The next task to do (or current task to be continued)
+Kimlong Hor:
+- Base UI for posting wall of the app
+
+Yunseo Han:
+- Write Create and Read operation for posting wall
+
+
+List any items that were mis-presented by your partner team:
+- None
+
+
+List any feedback/insights from your partner team
+- We’ve never worked on an IOS app, so the help we can offer is limited. But we would want to learn together.
+- It would be good to have a comment section so that users can have more interaction.
+
+
+Github Repository:
+https://github.com/KimlongHor/FoodReal.git
+
+
+
+
+
+

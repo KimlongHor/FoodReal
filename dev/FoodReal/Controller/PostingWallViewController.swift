@@ -11,12 +11,17 @@ import FirebaseFirestore
 class PostingWallViewController: UIViewController {
 
     @IBOutlet weak var postCollectionView: UICollectionView!
-    
     fileprivate var posts = ["1", "2", "3"]
+    @Published var errorMessage: String?
+    
+    var postWallQuery: Query!
+    var meals = [Meal]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPostCollectionView()
+        getData()
     }
     
     fileprivate func setupPostCollectionView() {
@@ -42,21 +47,50 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         let height = self.view.frame.height - self.view.frame.height/3.5
         return .init(width: width, height: height)
     }
-}
-
-/*
-        // Add a new document with a generated ID
-        let db = Firestore.firestore()
-        var ref: DocumentReference? = nil
-        ref = db.collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
+    
+    func getData() {
+        postWallQuery = FirebaseDB.db.collection(FirebaseDB.mealsRef)
+            .order(by: FirebaseDB.dateTimeField, descending: true)
+            .limit(to: 5)
+        
+        postWallQuery.getDocuments() { [weak self] (querySnapshot, err) in
+            guard let documents = querySnapshot?.documents else {
+                self?.errorMessage = "No documents in Meals collection"
+                return
             }
+
+            self?.meals = documents.compactMap({ queryDocumentSnapshot in
+                let result = Result { try queryDocumentSnapshot.data(as: Meal.self) }
+                switch result {
+                case .success(let meal):
+                    self?.errorMessage = nil
+                    print(meal.id!)
+                    return meal
+                case .failure(let error):
+                    // A Meal value could not be initalized from the DocmentSnapshot.
+                    switch error {
+                    case DecodingError.typeMismatch(_, let context):
+                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
+                    case DecodingError.valueNotFound(_, let context):
+                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
+                    case DecodingError.keyNotFound(_, let context):
+                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
+                    case DecodingError.dataCorrupted(let key):
+                        self?.errorMessage = "\(error.localizedDescription): \(key)"
+                    default:
+                        self?.errorMessage = "Error decoding document: \(error.localizedDescription)"
+                    }
+                    return nil
+                }
+            })
         }
- */
+    }
+    
+//  TODO: IMPLEMENT PAGINATE -CLAIRE
+//    func paginate() {
+//        //This line is the main pagination code.
+//        //Firestore allows you to fetch document from the last queryDocument
+//        query = query.start(afterDocument: documents.last!)
+//        getData()
+//    }
+}

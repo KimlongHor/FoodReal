@@ -6,30 +6,20 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Meal : Codable{
-    private let authorUsername: String
-    private var authorProfileImageURL: String
-    private let dateTime: Date
-    private var description: String
-    private var likes: [String]
-    private let frontImageURL: String
-    private let backImageURL: String
-    private let userID: String
-    
-    
-    func getMealDocumentData() -> [String: Any] {
-        return [
-            "authorUsername" : authorUsername,
-            "authorProfilePicture" : authorProfileImageURL,
-            "dateTime" : dateTime,
-            "description" : description,
-            "likes" : likes,
-            "frontImage" : frontImageURL,
-            "backImage" : backImageURL,
-            "privateData" : [
-                "authorUserID" : userID
-            ]
-        ]
-    }
+struct Meal : Codable {
+    @DocumentID var id: String?
+    var authorUsername: String
+    var authorProfilePicture: String
+    @ServerTimestamp var dateTime: Date?
+    var description: String
+    var likes: [String]
+    var frontImage: String
+    var backImage: String
+    var privateData: PrivateData
+}
+
+struct PrivateData : Codable {
+    var authorUserID: String
 }

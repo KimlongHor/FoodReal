@@ -8,6 +8,7 @@ target 'FoodReal' do
   # Pods for FoodReal
 pod 'FirebaseAnalytics'
 pod 'FirebaseFirestore'
+pod 'FirebaseFirestoreSwift'
 
 
 end

@@ -18,10 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        let exampleMeal : Meal = Meal(authorUsername: "ClaireHan", authorProfileImageURL: "profileimage", dateTime: Date(), description: "Hi", likes: ["kimlong", "hor"], frontImageURL: "frontimage", backImageURL: "backimage", userID: "01428412")
-//        FirebaseDB.add(aPublicMeal: exampleMeal)
-        var database:FirebaseDB = FirebaseDB();
-        database.getData()
         return true
     }
 

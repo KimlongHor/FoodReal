@@ -31,7 +31,7 @@
                                                 <rect key="frame" x="5" y="0.0" width="319" height="45"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="o7d-Fe-Uzu">
-                                                        <rect key="frame" x="0.0" y="0.0" width="191.33333333333334" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="45"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat" translatesAutoresizingMaskIntoConstraints="NO" id="Txq-2M-IDb">
                                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
@@ -41,18 +41,33 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="-5" translatesAutoresizingMaskIntoConstraints="NO" id="6kt-wm-ULR">
-                                                                <rect key="frame" x="50" y="0.0" width="141.33333333333334" height="45"/>
+                                                                <rect key="frame" x="50" y="0.0" width="136.66666666666666" height="45"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="clairehan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-UO-BLG">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="27"/>
-                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                                        <nil key="textColor"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfc-UO-BLG">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="65.666666666666671" height="27"/>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="clairehan">
+                                                                                <attributes>
+                                                                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <font key="NSFont" metaFont="system" size="16"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                    <integer key="NSUnderline" value="1"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 hr late" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63d-wg-az8">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63d-wg-az8">
                                                                         <rect key="frame" x="0.0" y="22" width="55.666666666666664" height="23"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                                        <nil key="textColor"/>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="7 hr late">
+                                                                                <attributes>
+                                                                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                    <font key="NSFont" metaFont="system" size="15"/>
+                                                                                    <integer key="NSUnderline" value="1"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -60,15 +75,15 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psb-aG-34D">
-                                                        <rect key="frame" x="278.33333333333331" y="0.0" width="40.666666666666686" height="45"/>
+                                                        <rect key="frame" x="273.66666666666669" y="0.0" width="45.333333333333314" height="45"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="more white"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="moreWhite" title=" "/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                                <color key="backgroundColor" systemColor="labelColor"/>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="9F0-Ai-owY" firstAttribute="top" secondItem="Ryu-Ut-Xk1" secondAttribute="top" id="ZOz-Gl-ld8"/>
                                             <constraint firstAttribute="bottom" secondItem="9F0-Ai-owY" secondAttribute="bottom" id="fiJ-z5-8uR"/>
@@ -90,23 +105,22 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fi9-m6-m36">
-                                                <rect key="frame" x="264" y="369" width="35" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="Fga-6x-RNd"/>
-                                                    <constraint firstAttribute="width" constant="35" id="rFc-ii-FYv"/>
-                                                </constraints>
+                                                <rect key="frame" x="252.33333333333334" y="347.33333333333331" width="66.666666666666657" height="56.666666666666686"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="B"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="heartWhiteBordered"/>
+                                                <connections>
+                                                    <action selector="likeButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="txJ-24-EcX"/>
+                                                </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="0Df-o6-G41" firstAttribute="top" secondItem="CQK-TH-4z6" secondAttribute="top" id="451-C0-knw"/>
                                             <constraint firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" constant="10" id="Iml-Zm-WNq"/>
                                             <constraint firstItem="Fi9-m6-m36" firstAttribute="bottom" secondItem="0Df-o6-G41" secondAttribute="bottom" constant="-20" id="Kdx-Ng-RD3"/>
                                             <constraint firstItem="NcR-Ji-xyd" firstAttribute="top" secondItem="0Df-o6-G41" secondAttribute="top" constant="15" id="Wle-SY-HJ2"/>
                                             <constraint firstAttribute="bottom" secondItem="0Df-o6-G41" secondAttribute="bottom" constant="10" id="o3h-SO-3Dc"/>
-                                            <constraint firstItem="Fi9-m6-m36" firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" constant="-20" id="pHX-aw-5Pf"/>
+                                            <constraint firstItem="Fi9-m6-m36" firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" id="pHX-aw-5Pf"/>
                                             <constraint firstItem="NcR-Ji-xyd" firstAttribute="leading" secondItem="0Df-o6-G41" secondAttribute="leading" constant="15" id="smx-Nz-dX5"/>
                                             <constraint firstItem="0Df-o6-G41" firstAttribute="leading" secondItem="CQK-TH-4z6" secondAttribute="leading" constant="10" id="z6N-aA-MQ7"/>
                                         </constraints>
@@ -114,7 +128,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qWs-ay-UK2" secondAttribute="bottom" id="QhD-My-aKE"/>
                             <constraint firstAttribute="trailing" secondItem="qWs-ay-UK2" secondAttribute="trailing" id="dWH-qU-ldG"/>
@@ -135,6 +149,7 @@
             <connections>
                 <outlet property="backImageView" destination="0Df-o6-G41" id="vAT-bN-R0N"/>
                 <outlet property="frontImageView" destination="NcR-Ji-xyd" id="Eas-ry-Mgl"/>
+                <outlet property="likeButton" destination="Fi9-m6-m36" id="1Xf-cZ-W0r"/>
                 <outlet property="moreButton" destination="psb-aG-34D" id="V0Z-m7-lze"/>
                 <outlet property="nameLabel" destination="Mfc-UO-BLG" id="AEw-ni-iG9"/>
                 <outlet property="timeLabel" destination="63d-wg-az8" id="NFd-Vb-htW"/>
@@ -146,13 +161,11 @@
     <resources>
         <image name="cat" width="2141" height="1400"/>
         <image name="food2" width="2566" height="3846"/>
-        <image name="more white" width="16.666666030883789" height="16.666666030883789"/>
+        <image name="heartWhiteBordered" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="moreWhite" width="16.666666030883789" height="16.666666030883789"/>
         <image name="person" width="612" height="408"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

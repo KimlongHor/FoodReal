@@ -17,12 +17,33 @@ class PostingWallViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPostCollectionView()
+        setupNavBar()
+    }
+    
+    fileprivate func setupNavBar() {
+        // setup the navbar and textAttribute
+        let label = UILabel()
+        let titleAttribute: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 25), .foregroundColor: UIColor.white]
+        let attributeString = NSMutableAttributedString(string: "FoodReal.", attributes: titleAttribute)
+
+        label.attributedText = attributeString
+        label.sizeToFit()
+        navigationItem.titleView = label
+        
+        // add a button to the right of the navbar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .done, target: self, action: #selector(didTapProfileButton))
+        navigationController?.navigationBar.tintColor = .white
     }
     
     fileprivate func setupPostCollectionView() {
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PostCollectionViewCell")
+    }
+    
+    @objc func didTapProfileButton() {
+        let desVC =  SettingViewController()
+        navigationController?.pushViewController(desVC, animated: true)
     }
 }
 

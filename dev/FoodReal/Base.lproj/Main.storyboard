@@ -10,6 +10,49 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Camera View Controller-->
+        <scene sceneID="x0V-Cm-Nw2">
+            <objects>
+                <viewController id="iMA-U4-Mbw" customClass="CameraViewController" customModule="FoodReal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hWJ-Jy-Hnz">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6vF-oL-5SO">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WCH-i7-P1Q">
+                                <rect key="frame" x="159" y="721" width="75" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="6rJ-Pb-I7z"/>
+                                    <constraint firstAttribute="width" constant="75" id="Qh5-iY-sOa"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="takePhotoButtonPressed:" destination="iMA-U4-Mbw" eventType="touchUpInside" id="eDE-Ly-gi9"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="PVT-Un-Gpx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6vF-oL-5SO" firstAttribute="leading" secondItem="PVT-Un-Gpx" secondAttribute="leading" id="9vX-Ge-JZg"/>
+                            <constraint firstItem="WCH-i7-P1Q" firstAttribute="centerX" secondItem="hWJ-Jy-Hnz" secondAttribute="centerX" id="EuR-vd-Vco"/>
+                            <constraint firstItem="PVT-Un-Gpx" firstAttribute="trailing" secondItem="6vF-oL-5SO" secondAttribute="trailing" id="kgH-TM-b4y"/>
+                            <constraint firstItem="PVT-Un-Gpx" firstAttribute="bottom" secondItem="WCH-i7-P1Q" secondAttribute="bottom" constant="40" id="mcH-F6-I5D"/>
+                            <constraint firstItem="6vF-oL-5SO" firstAttribute="top" secondItem="PVT-Un-Gpx" secondAttribute="top" id="pYw-mf-mXK"/>
+                            <constraint firstItem="PVT-Un-Gpx" firstAttribute="bottom" secondItem="6vF-oL-5SO" secondAttribute="bottom" id="ylP-dq-89o"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="photoPreviewImageView" destination="6vF-oL-5SO" id="Y4y-fe-Nww"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5be-cj-EBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1058.7786259541983" y="-643.66197183098598"/>
+        </scene>
         <!--Posting Wall View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>

@@ -11,6 +11,7 @@
 		3712939A2999BDC60030E49F /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371293992999BDC60030E49F /* Meal.swift */; };
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
+		D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1169DDC299EDC8C004CD72B /* CameraViewController.swift */; };
 		D146E919298A415400845BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E918298A415400845BA5 /* AppDelegate.swift */; };
 		D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E91A298A415400845BA5 /* SceneDelegate.swift */; };
 		D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E91C298A415400845BA5 /* PostingWallViewController.swift */; };
@@ -25,12 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		27C434759C628C748109B837 /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
+		3624F7410E4462FB8E494F08 /* Pods-FoodReal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.release.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.release.xcconfig"; sourceTree = "<group>"; };
 		371293972999AC3F0030E49F /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		371293992999BDC60030E49F /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A5885915C6193355E9BE351 /* Pods-FoodReal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.release.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.release.xcconfig"; sourceTree = "<group>"; };
+		D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
+		D1169DDC299EDC8C004CD72B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		D146E915298A415400845BA5 /* FoodReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D146E918298A415400845BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D146E91A298A415400845BA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,8 +63,8 @@
 		974D8C68D2D6705EEFCF183D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				27C434759C628C748109B837 /* Pods-FoodReal.debug.xcconfig */,
-				9A5885915C6193355E9BE351 /* Pods-FoodReal.release.xcconfig */,
+				D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */,
+				3624F7410E4462FB8E494F08 /* Pods-FoodReal.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 				371293972999AC3F0030E49F /* FirebaseDB.swift */,
 				D146E91C298A415400845BA5 /* PostingWallViewController.swift */,
 				D1C44496299D625C0063206B /* SettingViewController.swift */,
+				D1169DDC299EDC8C004CD72B /* CameraViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */,
+				D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */,
 				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
 				D146E919298A415400845BA5 /* AppDelegate.swift in Sources */,
@@ -414,7 +418,7 @@
 		};
 		D146E92A298A415400845BA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27C434759C628C748109B837 /* Pods-FoodReal.debug.xcconfig */;
+			baseConfigurationReference = D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -429,7 +433,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,7 +449,7 @@
 		};
 		D146E92B298A415400845BA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A5885915C6193355E9BE351 /* Pods-FoodReal.release.xcconfig */;
+			baseConfigurationReference = 3624F7410E4462FB8E494F08 /* Pods-FoodReal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -460,7 +464,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

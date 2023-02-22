@@ -38,6 +38,9 @@ class PostingWallViewController: UIViewController {
         // add a button to the right of the navbar
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.fill"), style: .done, target: self, action: #selector(didTapProfileButton))
         navigationController?.navigationBar.tintColor = .white
+        
+        // add a button to the left of the navbar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "camera.fill"), style: .done, target: self, action: #selector(didTapCameraButton))
     }
     
     fileprivate func setupPostCollectionView() {
@@ -49,6 +52,10 @@ class PostingWallViewController: UIViewController {
     @objc func didTapProfileButton() {
         let desVC =  SettingViewController()
         navigationController?.pushViewController(desVC, animated: true)
+    }
+    
+    @objc func didTapCameraButton() {
+        print("Button Tap")
     }
 }
 

@@ -50,12 +50,13 @@ class PostingWallViewController: UIViewController {
     }
     
     @objc func didTapProfileButton() {
-        let desVC =  SettingViewController()
-        navigationController?.pushViewController(desVC, animated: true)
+        let settingVC =  SettingViewController()
+        navigationController?.pushViewController(settingVC, animated: true)
     }
     
     @objc func didTapCameraButton() {
-        print("Button Tap")
+        let cameraVC = CameraViewController()
+        navigationController?.pushViewController(cameraVC, animated: true)
     }
 }
 

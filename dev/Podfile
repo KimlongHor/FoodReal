@@ -9,6 +9,7 @@ target 'FoodReal' do
 pod 'FirebaseAnalytics'
 pod 'FirebaseFirestore'
 pod 'FirebaseFirestoreSwift'
+pod 'LBTATools', '~> 1.0'
 
 
 end

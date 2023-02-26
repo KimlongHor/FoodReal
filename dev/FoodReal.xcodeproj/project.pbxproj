@@ -12,6 +12,7 @@
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
 		D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1169DDC299EDC8C004CD72B /* CameraViewController.swift */; };
+		D126275D29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */; };
 		D146E919298A415400845BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E918298A415400845BA5 /* AppDelegate.swift */; };
 		D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E91A298A415400845BA5 /* SceneDelegate.swift */; };
 		D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E91C298A415400845BA5 /* PostingWallViewController.swift */; };
@@ -33,6 +34,7 @@
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
 		D1169DDC299EDC8C004CD72B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		D146E915298A415400845BA5 /* FoodReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D146E918298A415400845BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D146E91A298A415400845BA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				D1C44492299D60270063206B /* PostCollectionViewCell.swift */,
 				D1C44493299D60270063206B /* PostCollectionViewCell.xib */,
+				D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
 				D146E919298A415400845BA5 /* AppDelegate.swift in Sources */,
+				D126275D29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift in Sources */,
 				D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */,
 				D1C44497299D625C0063206B /* SettingViewController.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
@@ -424,7 +428,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZTH4C6ABZ2;
+				DEVELOPMENT_TEAM = TBVM4H3583;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodReal/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app needs to access the camera";
@@ -457,7 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZTH4C6ABZ2;
+				DEVELOPMENT_TEAM = TBVM4H3583;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FoodReal/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app needs to access the camera";

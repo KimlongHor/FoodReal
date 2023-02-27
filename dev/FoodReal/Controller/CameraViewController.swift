@@ -5,6 +5,7 @@
 //  Created by Kimlong Hor on 2/16/23.
 //
 
+import LBTATools
 import UIKit
 import AVFoundation
 
@@ -19,20 +20,40 @@ class CameraViewController: UIViewController {
     // Video preview
     let previewLayer = AVCaptureVideoPreviewLayer()
     
+    var backInput: AVCaptureInput?
+    var frontInput: AVCaptureInput?
+    
+    var backImage: UIImage?
+    var frontImage: UIImage?
+    
+    var isBothImageCaptured = false
+    
+    var backCameraOn = true
+    
     private let shutterButton: UIButton = {
-        let button = UIButton(frame: .init(x: 0, y: 0, width: 80, height: 80))
+        let button = UIButton()
         button.createRoundCorner(cornerRadius: 40)
         button.createBorder(color: .white, width: 10)
+        button.addTarget(self, action: #selector(takePhotoButtonPressed), for: .touchUpInside)
         return button
     }()
     
     lazy var previewRoundedView: UIView = {
         var view = UIView()
         view.backgroundColor = .white
-        view.createRoundCorner(cornerRadius: 8)
+        view.createRoundCorner(cornerRadius: 15)
         view.frame = .init(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height/1.5)
         view.layer.masksToBounds = true
         return view
+    }()
+    
+    let switchCameraButton : UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "switchCamera")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(switchCameraButtonPressed), for: .touchUpInside)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -46,7 +67,7 @@ class CameraViewController: UIViewController {
         super.viewDidLayoutSubviews()
         previewLayer.frame = previewRoundedView.layer.bounds
         previewRoundedView.layer.addSublayer(previewLayer)
-        shutterButton.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - 100)
+        //shutterButton.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - 100)
     }
     
     fileprivate func checkCameraPermission() {
@@ -74,9 +95,10 @@ class CameraViewController: UIViewController {
     
     fileprivate func setUpCamera() {
         let session = AVCaptureSession()
-        if let device = AVCaptureDevice.default(for: .video) {
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
             do {
                 let input = try AVCaptureDeviceInput(device: device)
+                backInput = input
                 if session.canAddInput(input) {
                     session.addInput(input)
                 }
@@ -88,9 +110,24 @@ class CameraViewController: UIViewController {
                 previewLayer.videoGravity = .resizeAspectFill
                 previewLayer.session = session
                 
-                
                 session.startRunning()
                 self.session = session
+            } catch {
+                print("Failed to setup camera")
+            }
+        }
+        
+        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+            do {
+                let input = try AVCaptureDeviceInput(device: device)
+                frontInput = input
+                if session.canAddInput(input) {
+                    session.addInput(input)
+                }
+                
+                if session.canAddOutput(output) {
+                    session.addOutput(output)
+                }
             } catch {
                 print("Failed to setup camera")
             }
@@ -101,8 +138,33 @@ class CameraViewController: UIViewController {
         view.backgroundColor = .black
         
         view.addSubview(previewRoundedView)
+        
         view.addSubview(shutterButton)
-        shutterButton.addTarget(self, action: #selector(takePhotoButtonPressed), for: .touchUpInside)
+        shutterButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 100, right: 0), size: .init(width: 80, height: 80))
+        shutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(switchCameraButton)
+        let leftPadding = (view.frame.width/4) - (shutterButton.frame.width) - 35
+        switchCameraButton.anchor(top: nil, leading: shutterButton.trailingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: leftPadding, bottom: 120, right: 0), size: .init(width: 35, height: 35))
+    }
+    
+    @objc fileprivate func switchCameraButtonPressed() {
+        switchCameraButton.isUserInteractionEnabled = false
+        
+        session?.beginConfiguration()
+        guard let backInput = backInput, let frontInput = frontInput else {return}
+        if backCameraOn {
+            session?.removeInput(backInput)
+            session?.addInput(frontInput)
+            backCameraOn = false
+        } else {
+            session?.removeInput(frontInput)
+            session?.addInput(backInput)
+            backCameraOn = true
+        }
+        
+        session?.commitConfiguration()
+        switchCameraButton.isUserInteractionEnabled = true
     }
     
     fileprivate func setupNavBar() {
@@ -116,23 +178,54 @@ class CameraViewController: UIViewController {
     }
     
     @objc fileprivate func takePhotoButtonPressed() {
+        if !backCameraOn {
+            switchCameraButtonPressed()
+        }
+
         output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        
+        switchToFrontAndWait {
+            self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        }
+    }
+    
+    fileprivate func switchToFrontAndWait(completion: @escaping () -> Void) {
+        session?.beginConfiguration()
+        guard let backInput = backInput, let frontInput = frontInput else {return}
+        session?.removeInput(backInput)
+        session?.addInput(frontInput)
+        backCameraOn = false
+        session?.commitConfiguration()
+        sleep(1)
+        completion()
     }
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        print("Hello")
         guard let data = photo.fileDataRepresentation() else {
             return
         }
         // this is the image from the camera
         let image = UIImage(data: data)
         
-        // just to show on the screen
-        session?.stopRunning()
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFill
-        imageView.frame = view.bounds
-        view.addSubview(imageView)
+        guard let backImage = backImage else {
+            backImage = image
+            return
+        }
+        
+        frontImage = image
+        isBothImageCaptured = true
+        
+        // display captured images
+        let containerView = PreviewPhotoContainerView()
+        containerView.backImageView.image = backImage
+        containerView.frontImageView.image = frontImage
+        view.addSubview(containerView)
+        containerView.anchor(top: previewRoundedView.topAnchor, leading: previewRoundedView.leadingAnchor, bottom: previewRoundedView.bottomAnchor, trailing: previewRoundedView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: previewRoundedView.frame.width, height: previewRoundedView.frame.height))
+        containerView.layer.masksToBounds = true
     }
 }

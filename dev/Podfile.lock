@@ -742,6 +742,7 @@ PODS:
     - gRPC-Core/Interface (= 1.44.0)
     - Libuv-gRPC (= 0.0.10)
   - gRPC-Core/Interface (1.44.0)
+  - LBTATools (1.0.12)
   - leveldb-library (1.22.1)
   - Libuv-gRPC (0.0.10):
     - Libuv-gRPC/Implementation (= 0.0.10)
@@ -760,6 +761,7 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseFirestore
   - FirebaseFirestoreSwift
+  - LBTATools (~> 1.0)
 
 SPEC REPOS:
   trunk:
@@ -777,6 +779,7 @@ SPEC REPOS:
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - LBTATools
     - leveldb-library
     - Libuv-gRPC
     - nanopb
@@ -797,11 +800,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
   gRPC-Core: 943e491cb0d45598b0b0eb9e910c88080369290b
+  LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
 
-PODFILE CHECKSUM: 1e425a599ce826bb869a36afcfd896bbd7fb69c1
+PODFILE CHECKSUM: 742f04d13c1d038d2f12f0bc14ab4dbb0e4dc50b
 
 COCOAPODS: 1.11.3

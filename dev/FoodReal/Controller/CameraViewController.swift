@@ -11,6 +11,9 @@ import AVFoundation
 
 class CameraViewController: UIViewController {
     
+    var frontData: Data?
+    var backData: Data?
+    
     // Capture session
     var session: AVCaptureSession?
     
@@ -30,10 +33,12 @@ class CameraViewController: UIViewController {
     
     var backCameraOn = true
     
+    var previewContainerView: UIView?
+    
     private let shutterButton: UIButton = {
         let button = UIButton()
         button.createRoundCorner(cornerRadius: 40)
-        button.createBorder(color: .white, width: 10)
+        button.createBorder(color: .white, width: 5)
         button.addTarget(self, action: #selector(takePhotoButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -42,12 +47,12 @@ class CameraViewController: UIViewController {
         var view = UIView()
         view.backgroundColor = .white
         view.createRoundCorner(cornerRadius: 15)
-        view.frame = .init(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height/1.5)
+        view.frame = .init(x: 0, y: 110, width: self.view.frame.width, height: self.view.frame.height/1.6)
         view.layer.masksToBounds = true
         return view
     }()
     
-    let switchCameraButton : UIButton = {
+    let switchCameraButton: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "switchCamera")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
@@ -55,6 +60,24 @@ class CameraViewController: UIViewController {
         button.addTarget(self, action: #selector(switchCameraButtonPressed), for: .touchUpInside)
         return button
     }()
+    
+    let retakeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Retake", for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(handleRetake), for: .touchUpInside)
+        button.isHidden = true
+        return button
+    }()
+    
+    @objc fileprivate func handleRetake() {
+        print("retake pressed.")
+        retakeButton.isHidden = true
+        guard let previewContainerView = previewContainerView else {return}
+        previewContainerView.removeFromSuperview()
+        frontImage = nil
+        backImage = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,12 +163,17 @@ class CameraViewController: UIViewController {
         view.addSubview(previewRoundedView)
         
         view.addSubview(shutterButton)
+        let bottomPadding = view.frame.height - previewRoundedView.frame.height - previewRoundedView.frame.minY
         shutterButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 100, right: 0), size: .init(width: 80, height: 80))
         shutterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(switchCameraButton)
         let leftPadding = (view.frame.width/4) - (shutterButton.frame.width) - 35
         switchCameraButton.anchor(top: nil, leading: shutterButton.trailingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: leftPadding, bottom: 120, right: 0), size: .init(width: 35, height: 35))
+        
+        view.addSubview(retakeButton)
+        let rightPadding = (view.frame.width/4) - (shutterButton.frame.width) - 45
+        retakeButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: shutterButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 120, right: rightPadding), size: .init(width: 0, height: 0))
     }
     
     @objc fileprivate func switchCameraButtonPressed() {
@@ -196,16 +224,17 @@ class CameraViewController: UIViewController {
         session?.addInput(frontInput)
         backCameraOn = false
         session?.commitConfiguration()
-        sleep(1)
-        completion()
+        
+        // Wait for 0.1 second for the front camera to be ready to capture
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+            completion()
+        }
     }
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
-        print("Hello")
         guard let data = photo.fileDataRepresentation() else {
             return
         }
@@ -214,18 +243,28 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         
         guard let backImage = backImage else {
             backImage = image
+            backData = data  //<----
             return
         }
         
         frontImage = image
+        frontData = data  //<----
         isBothImageCaptured = true
+        
+        let meal = Meal(authorUsername: "Kim", authorProfilePicture: "Kim", description: "Testing", likes: [""], frontImage: frontData ?? data, backImage: backData ?? data, privateData: .init(authorUserID: "Kim")) //<----
         
         // display captured images
         let containerView = PreviewPhotoContainerView()
+        containerView.meal = meal
         containerView.backImageView.image = backImage
         containerView.frontImageView.image = frontImage
         view.addSubview(containerView)
         containerView.anchor(top: previewRoundedView.topAnchor, leading: previewRoundedView.leadingAnchor, bottom: previewRoundedView.bottomAnchor, trailing: previewRoundedView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: previewRoundedView.frame.width, height: previewRoundedView.frame.height))
         containerView.layer.masksToBounds = true
+        
+        // save containerView to the previewContainerView to handle when the user pressed retake
+        previewContainerView = containerView
+        
+        retakeButton.isHidden = false
     }
 }

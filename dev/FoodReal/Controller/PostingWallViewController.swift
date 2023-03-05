@@ -14,15 +14,19 @@ class PostingWallViewController: UIViewController {
     fileprivate var posts = ["1", "2", "3"]
     @Published var errorMessage: String?
     
-    var postWallQuery: Query!
-    var meals = [Meal]()
-    
+    var meals: [Meal]? {
+        didSet {
+            postCollectionView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPostCollectionView()
         setupNavBar()
-        getData()
+        FirebaseDB.getData { meal, error in
+            self.meals = meal
+        }
     }
     
     fileprivate func setupNavBar() {
@@ -62,12 +66,14 @@ class PostingWallViewController: UIViewController {
 
 extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts.count
+        return meals?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath as IndexPath) as! PostCollectionViewCell
-        
+        if let meal = meals?[indexPath.row] {
+            cell.setupCellView(meal: meal)
+        }
         return cell
     }
     
@@ -76,45 +82,14 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         let height = self.view.frame.height - self.view.frame.height/3.5
         return .init(width: width, height: height)
     }
-    
-    func getData() {
-        postWallQuery = FirebaseDB.db.collection(FirebaseDB.mealsRef)
-            .order(by: FirebaseDB.dateTimeField, descending: true)
-            .limit(to: 5)
-        
-        postWallQuery.getDocuments() { [weak self] (querySnapshot, err) in
-            guard let documents = querySnapshot?.documents else {
-                self?.errorMessage = "No documents in Meals collection"
-                return
-            }
+}
 
-            self?.meals = documents.compactMap({ queryDocumentSnapshot in
-                let result = Result { try queryDocumentSnapshot.data(as: Meal.self) }
-                switch result {
-                case .success(let meal):
-                    self?.errorMessage = nil
-                    print(meal.id!)
-                    return meal
-                case .failure(let error):
-                    // A Meal value could not be initalized from the DocmentSnapshot.
-                    switch error {
-                    case DecodingError.typeMismatch(_, let context):
-                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                    case DecodingError.valueNotFound(_, let context):
-                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                    case DecodingError.keyNotFound(_, let context):
-                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-                    case DecodingError.dataCorrupted(let key):
-                        self?.errorMessage = "\(error.localizedDescription): \(key)"
-                    default:
-                        self?.errorMessage = "Error decoding document: \(error.localizedDescription)"
-                    }
-                    return nil
-                }
-            })
-        }
-    }
-    
+// TODO: -Kim
+/*
+ - After clicking the post button, bring the users back to the postingWall screen and refresh the collectionView.
+ - Work on adding legit data to firestore (Currently, only front and back images are real in database)
+ */
+
 //  TODO: IMPLEMENT PAGINATE -CLAIRE
 //    func paginate() {
 //        //This line is the main pagination code.
@@ -122,4 +97,3 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
 //        query = query.start(afterDocument: documents.last!)
 //        getData()
 //    }
-}

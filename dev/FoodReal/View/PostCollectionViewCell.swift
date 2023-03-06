@@ -34,12 +34,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         likeButton.setTitle("", for: .normal)
     }
     
-    @IBAction func likeButtonPressed(_ sender: UIButton) {
-        isOn.toggle()
-        setButtonBackGround(view: sender, on: UIImage(named: "heartRed") ?? UIImage(), off: UIImage(named: "heartWhiteBordered") ?? UIImage(), onOffStatus: isOn)
-    }
-    
-    func setButtonBackGround(view: UIButton, on: UIImage, off: UIImage, onOffStatus: Bool ) {
+    fileprivate func setButtonBackGround(view: UIButton, on: UIImage, off: UIImage, onOffStatus: Bool ) {
         switch onOffStatus {
             case true:
             // change backgroundImage to hart image
@@ -47,5 +42,15 @@ class PostCollectionViewCell: UICollectionViewCell {
             default:
                 view.setImage(off, for: .normal)
         }
+    }
+    
+    func setupCellView(meal: Meal) {
+        frontImageView.image = UIImage(data: meal.frontImage ?? Data())
+        backImageView.image = UIImage(data: meal.backImage ?? Data())
+    }
+    
+    @IBAction func likeButtonPressed(_ sender: UIButton) {
+        isOn.toggle()
+        setButtonBackGround(view: sender, on: UIImage(named: "heartRed") ?? UIImage(), off: UIImage(named: "heartWhiteBordered") ?? UIImage(), onOffStatus: isOn)
     }
 }

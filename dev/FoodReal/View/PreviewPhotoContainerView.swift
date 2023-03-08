@@ -46,7 +46,16 @@ class PreviewPhotoContainerView: UIView {
     
     @objc fileprivate func handlePost() {
         guard let meal = meal else {return}
-        FirebaseDB.add(aPublicMeal: meal)
+        FirebaseDB.add(aPublicMeal: meal) { success, error in
+            if let error = error {
+                print("Failed to add to database: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let successMessage = success else {return}
+            print(successMessage)
+            self.parentViewController?.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     override init(frame: CGRect) {

@@ -7,26 +7,58 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import Lottie
 
 class PostingWallViewController: UIViewController {
-
-    @IBOutlet weak var postCollectionView: UICollectionView!
-    fileprivate var posts = ["1", "2", "3"]
-    @Published var errorMessage: String?
     
+    @IBOutlet weak var postCollectionView: UICollectionView!
+    
+    let refreshControl = UIRefreshControl()
+    var loadingView: LottieAnimationView?
+    var animationView = UIView() // we need this as a black background for loadingView
+    var smileyView: LottieAnimationView?
     var meals: [Meal]? {
         didSet {
             postCollectionView.reloadData()
+            animationView.isHidden = true
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupAnimationViews()
+        setupRefreshControl()
         setupPostCollectionView()
         setupNavBar()
-        FirebaseDB.getData { meal, error in
-            self.meals = meal
-        }
+    }
+    
+    fileprivate func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.backgroundColor = .clear
+        refreshControl.addSubview(smileyView ?? UIView(backgroundColor: .white))
+        smileyView?.anchor(top: refreshControl.topAnchor, leading: refreshControl.leadingAnchor, bottom: refreshControl.bottomAnchor, trailing: refreshControl.trailingAnchor)
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        postCollectionView.refreshControl = refreshControl
+    }
+    
+    fileprivate func setupAnimationViews() {
+        loadingView = .init(name: "loading")
+        loadingView?.loopMode = .loop
+        loadingView?.play()
+        loadingView?.contentMode = .scaleAspectFit
+        loadingView?.backgroundColor = .black
+        loadingView?.translatesAutoresizingMaskIntoConstraints = false
+        animationView.addSubview(loadingView ?? UIView(backgroundColor: .black))
+        loadingView?.anchor(top: animationView.topAnchor, leading: animationView.leadingAnchor, bottom: animationView.bottomAnchor, trailing: animationView.trailingAnchor, padding: .init(top: 100, left: 100, bottom: 100, right: 100))
+        view.addSubview(animationView)
+        animationView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+        
+        smileyView = .init(name: "smiley")
+        smileyView?.loopMode = .loop
+        smileyView?.play()
+        smileyView?.contentMode = .scaleAspectFit
+        smileyView?.backgroundColor = .black
+        smileyView?.translatesAutoresizingMaskIntoConstraints = false
     }
     
     fileprivate func setupNavBar() {
@@ -51,6 +83,18 @@ class PostingWallViewController: UIViewController {
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PostCollectionViewCell")
+        FirebaseDB.getData { meal, error in
+            self.meals = meal
+        }
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+       // Code to refresh table view
+        print("Hello")
+        FirebaseDB.getData { meal, error in
+            self.meals = meal
+            self.refreshControl.endRefreshing()
+        }
     }
     
     @objc func didTapProfileButton() {

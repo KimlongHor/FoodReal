@@ -14,15 +14,16 @@ class FirebaseDB {
     static let mealsRef = "Meals"
     static let dateTimeField = "dateTime"
         
-    static func add(aPublicMeal meal: Meal) {
+    static func add(aPublicMeal meal: Meal, completion: @escaping((String?, Error?) -> ())) {
         var ref: DocumentReference? = nil
         do {
             ref = try db.collection(mealsRef).addDocument(from: meal) {
                 err in
                 if let err = err {
-                    print("Error adding document: \(err)")
+                    completion(nil, err)
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    completion("Successfully added to the database", nil)
                 }
             }
         } catch {
@@ -59,7 +60,7 @@ class FirebaseDB {
                     print(meal.id!)
                     return meal
                 case .failure(let error):
-                    print("Failed to decode fetched meal data")
+                    print("Failed to decode fetched meal data \(error.localizedDescription)")
                     // A Meal value could not be initalized from the DocmentSnapshot.
 //                    switch error {
 //                    case DecodingError.typeMismatch(_, let context):

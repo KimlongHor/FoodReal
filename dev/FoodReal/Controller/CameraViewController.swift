@@ -226,7 +226,7 @@ class CameraViewController: UIViewController {
         session?.commitConfiguration()
         
         // Wait for 0.1 second for the front camera to be ready to capture
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             completion()
         }
     }

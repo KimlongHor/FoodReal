@@ -10,6 +10,7 @@ pod 'FirebaseAnalytics'
 pod 'FirebaseFirestore'
 pod 'FirebaseFirestoreSwift'
 pod 'LBTATools', '~> 1.0'
+pod 'lottie-ios'
 
 
 end

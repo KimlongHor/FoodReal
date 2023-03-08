@@ -19,10 +19,12 @@ class PostingWallViewController: UIViewController {
     var smileyView: LottieAnimationView?
     var meals: [Meal]? {
         didSet {
-            postCollectionView.reloadData()
-            animationView.isHidden = true
+            resetupViewIfNeeded()
         }
     }
+    
+    var lastDocumentSnapshot: DocumentSnapshot!
+    var fetchingMore = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,15 +85,46 @@ class PostingWallViewController: UIViewController {
         postCollectionView.delegate = self
         postCollectionView.dataSource = self
         postCollectionView.register(UINib(nibName: "PostCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "PostCollectionViewCell")
-        FirebaseDB.getData { meal, error in
-            self.meals = meal
+        
+        // fetch the latest data and save it in the meals variable
+        FirebaseDB.getData(lastDocSnapShot: nil) { meals, lastDoc, error in
+            if let error = error {
+                print("Failed fetching data \(error.localizedDescription)")
+                return
+            }
+            self.lastDocumentSnapshot = lastDoc
+            self.meals = meals
+        }
+    }
+    
+    fileprivate func resetupViewIfNeeded() {
+        guard let meals = meals else {return}
+        if !meals.isEmpty {
+            postCollectionView.reloadData()
+            animationView.isHidden = true
         }
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        FirebaseDB.getData { meal, error in
-            self.meals = meal
-            self.refreshControl.endRefreshing()
+        
+        // reset all the data to the original state
+        meals?.removeAll()
+        lastDocumentSnapshot = nil
+        fetchingMore = true
+        
+        // fecth the latest data and save it in the meals variable
+        FirebaseDB.getData(lastDocSnapShot: lastDocumentSnapshot) { meals, lastDoc, error in
+            if let error = error {
+                print("Failed fetching data \(error.localizedDescription)")
+                return
+            }
+            self.lastDocumentSnapshot = lastDoc
+            self.meals = meals
+            self.fetchingMore = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.refreshControl.endRefreshing()
+            })
         }
     }
     
@@ -125,27 +158,54 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         let height = self.view.frame.height - self.view.frame.height/3.5
         return .init(width: width, height: height)
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY > contentHeight - scrollView.frame.height - 50 {
+            if !fetchingMore {
+                paginationData()
+            }
+        }
+    }
+    
+    fileprivate func paginationData() {
+        print("reached bottom of the screen")
+        
+        // fetch more data and append it to meals variable
+        fetchingMore = true
+        FirebaseDB.getData(lastDocSnapShot: lastDocumentSnapshot) { meals, lastDoc, error in
+            if let error = error  {
+                print("Failed paginating data \(error.localizedDescription)")
+                return
+            }
+            
+            if let meals = meals, let lastDoc = lastDoc {
+                self.meals?.append(contentsOf: meals)
+                self.lastDocumentSnapshot = lastDoc
+            }
+            
+            // do not move below code in the if{} above
+            self.fetchingMore = false
+        }
+    }
 }
 
 extension PostingWallViewController: CameraViewDelegate {
     func didPost() {
         animationView.isHidden = false
-        FirebaseDB.getData { meal, error in
-            self.meals = meal
+        FirebaseDB.getData(lastDocSnapShot: nil) { meals, lastDoc, error in
+            if let error = error {
+                print("Failed fetching data \(error.localizedDescription)")
+                return
+            }
+            self.lastDocumentSnapshot = lastDoc
+            self.meals = meals
         }
     }
 }
 
 // TODO: -Kim
 /*
- - After clicking the post button, bring the users back to the postingWall screen and refresh the collectionView.
  - Work on adding legit data to firestore (Currently, only front and back images are real in database)
  */
-
-//  TODO: IMPLEMENT PAGINATE -CLAIRE
-//    func paginate() {
-//        //This line is the main pagination code.
-//        //Firestore allows you to fetch document from the last queryDocument
-//        query = query.start(afterDocument: documents.last!)
-//        getData()
-//    }

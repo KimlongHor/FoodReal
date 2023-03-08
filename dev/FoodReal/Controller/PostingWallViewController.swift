@@ -15,7 +15,7 @@ class PostingWallViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     var loadingView: LottieAnimationView?
-    var animationView = UIView() // we need this as a black background for loadingView
+    var animationView = UIView(backgroundColor: .black) // we need this as a black background for loadingView
     var smileyView: LottieAnimationView?
     var meals: [Meal]? {
         didSet {
@@ -89,8 +89,6 @@ class PostingWallViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-       // Code to refresh table view
-        print("Hello")
         FirebaseDB.getData { meal, error in
             self.meals = meal
             self.refreshControl.endRefreshing()
@@ -104,6 +102,7 @@ class PostingWallViewController: UIViewController {
     
     @objc func didTapCameraButton() {
         let cameraVC = CameraViewController()
+        cameraVC.delegate = self
         navigationController?.pushViewController(cameraVC, animated: true)
     }
 }
@@ -125,6 +124,15 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         let width = collectionView.frame.width
         let height = self.view.frame.height - self.view.frame.height/3.5
         return .init(width: width, height: height)
+    }
+}
+
+extension PostingWallViewController: CameraViewDelegate {
+    func didPost() {
+        animationView.isHidden = false
+        FirebaseDB.getData { meal, error in
+            self.meals = meal
+        }
     }
 }
 

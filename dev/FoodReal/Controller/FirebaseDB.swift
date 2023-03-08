@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 
 class FirebaseDB {
     static let db = Firestore.firestore()
@@ -27,6 +28,15 @@ class FirebaseDB {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    static func signOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
         }
     }
     

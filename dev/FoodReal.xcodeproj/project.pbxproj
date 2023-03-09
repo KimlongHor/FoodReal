@@ -28,6 +28,8 @@
 		D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E923298A415400845BA5 /* LaunchScreen.storyboard */; };
 		D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148BFDE299303CB002BC463 /* UIViewExtensions.swift */; };
 		D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19391FA299C42FA00A17F20 /* StringExtensions.swift */; };
+		D1ADD6FD29B86C0D00AD2B88 /* smiley.json in Resources */ = {isa = PBXBuildFile; fileRef = D1ADD6FC29B86C0D00AD2B88 /* smiley.json */; };
+		D1BA9C4829B7E45200970131 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = D1BA9C4729B7E45100970131 /* loading.json */; };
 		D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44492299D60270063206B /* PostCollectionViewCell.swift */; };
 		D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C44493299D60270063206B /* PostCollectionViewCell.xib */; };
 		D1C44497299D625C0063206B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44496299D625C0063206B /* SettingViewController.swift */; };
@@ -59,6 +61,8 @@
 		D146E926298A415400845BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D148BFDE299303CB002BC463 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D19391FA299C42FA00A17F20 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		D1ADD6FC29B86C0D00AD2B88 /* smiley.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smiley.json; sourceTree = "<group>"; };
+		D1BA9C4729B7E45100970131 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		D1C44492299D60270063206B /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1C44493299D60270063206B /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1C44496299D625C0063206B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				D146E91E298A415400845BA5 /* Main.storyboard */,
 				D146E921298A415400845BA5 /* Assets.xcassets */,
 				D146E923298A415400845BA5 /* LaunchScreen.storyboard */,
+				D1ADD6FC29B86C0D00AD2B88 /* smiley.json */,
+				D1BA9C4729B7E45100970131 /* loading.json */,
 				D148BFDD2993039D002BC463 /* Helpers */,
 				D146E926298A415400845BA5 /* Info.plist */,
 			);
@@ -244,9 +250,11 @@
 			files = (
 				D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */,
 				37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */,
+				D1BA9C4829B7E45200970131 /* loading.json in Resources */,
 				D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */,
 				D146E922298A415400845BA5 /* Assets.xcassets in Resources */,
 				D146E920298A415400845BA5 /* Main.storyboard in Resources */,
+				D1ADD6FD29B86C0D00AD2B88 /* smiley.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

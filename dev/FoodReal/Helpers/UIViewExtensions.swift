@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
+// for User Interface
 extension UIView {
-    
     func createRoundCorner(cornerRadius: CGFloat) {
         self.layer.cornerRadius = cornerRadius
     }
@@ -28,5 +28,20 @@ extension UIView {
     func createBorder(color: UIColor, width: CGFloat) {
        self.layer.borderColor = color.cgColor
        self.layer.borderWidth = width
+    }
+}
+
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        // Starts from next (As we know self is not a UIViewController).
+        var parentResponder: UIResponder? = self.next
+        while parentResponder != nil {
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+            parentResponder = parentResponder?.next
+        }
+        return nil
     }
 }

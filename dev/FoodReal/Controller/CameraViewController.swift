@@ -9,31 +9,31 @@ import LBTATools
 import UIKit
 import AVFoundation
 
+protocol CameraViewDelegate {
+    func didPost()
+}
+
 class CameraViewController: UIViewController {
-    
-    var frontData: Data?
-    var backData: Data?
     
     // Capture session
     var session: AVCaptureSession?
-    
     // Photo output
     let output = AVCapturePhotoOutput()
-    
     // Video preview
     let previewLayer = AVCaptureVideoPreviewLayer()
     
     var backInput: AVCaptureInput?
     var frontInput: AVCaptureInput?
-    
     var backImage: UIImage?
     var frontImage: UIImage?
+    var frontData: Data?
+    var backData: Data?
     
     var isBothImageCaptured = false
-    
     var backCameraOn = true
-    
     var previewContainerView: UIView?
+    
+    var delegate: CameraViewDelegate?
     
     private let shutterButton: UIButton = {
         let button = UIButton()
@@ -226,7 +226,7 @@ class CameraViewController: UIViewController {
         session?.commitConfiguration()
         
         // Wait for 0.1 second for the front camera to be ready to capture
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             completion()
         }
     }

@@ -15,15 +15,16 @@ class FirebaseDB {
     static let mealsRef = "Meals"
     static let dateTimeField = "dateTime"
         
-    static func add(aPublicMeal meal: Meal) {
+    static func add(aPublicMeal meal: Meal, completion: @escaping((String?, Error?) -> ())) {
         var ref: DocumentReference? = nil
         do {
             ref = try db.collection(mealsRef).addDocument(from: meal) {
                 err in
                 if let err = err {
-                    print("Error adding document: \(err)")
+                    completion(nil, err)
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    completion("Successfully added to the database", nil)
                 }
             }
         } catch {
@@ -31,7 +32,7 @@ class FirebaseDB {
         }
     }
     
-    static func signOut() {
+  static func signOut() {
         let firebaseAuth = Auth.auth()
         do {
           try firebaseAuth.signOut()
@@ -40,52 +41,45 @@ class FirebaseDB {
         }
     }
     
-    static func getData(completion: @escaping(([Meal]?, Error?) -> ())) {
-        var postWallQuery: Query!
+    static func getData(lastDocSnapShot: DocumentSnapshot?, completion: @escaping(([Meal]?, DocumentSnapshot?, Error?) -> ())) {
+        var query: Query!
+        var newLastDocSnapshot: DocumentSnapshot?
+
         var meals: [Meal]? {
             didSet {
-                completion(meals, nil)
+                completion(meals, newLastDocSnapshot, nil)
             }
         }
         
-        postWallQuery = FirebaseDB.db.collection(FirebaseDB.mealsRef)
-            .order(by: FirebaseDB.dateTimeField, descending: true)
-            .limit(to: 5)
+        if let lastDocSnapShot = lastDocSnapShot {
+            query = db.collection(mealsRef).order(by: dateTimeField, descending: true).start(afterDocument: lastDocSnapShot).limit(to: 2)
+            print("Next 2 is loaded")
+        } else {
+            query = db.collection(mealsRef).order(by: dateTimeField, descending: true).limit(to: 2)
+            print("First 2 doc")
+        }
         
-        postWallQuery.getDocuments() {(querySnapshot, error) in
+        query.getDocuments { snapshot, error in
             if let error = error {
-                print("Failed getting document from Meal collection: \(error.localizedDescription)")
-            }
-            
-            guard let documents = querySnapshot?.documents else {
-                print("No documents in Meal collection")
+                completion(nil, nil, error)
+            } else if snapshot!.isEmpty {
+                print("Empty snapshot")
+                completion(nil, nil, nil)
                 return
+            } else {
+                meals = snapshot?.documents.compactMap({ queryDocumentSnapshot in
+                    let result = Result { try queryDocumentSnapshot.data(as: Meal.self) }
+                    switch result {
+                    case .success(let meal):
+                        print(meal.id!)
+                        newLastDocSnapshot = snapshot?.documents.last
+                        return meal
+                    case .failure(let error):
+                        fatalError("Failed to decode fetched meal data \(error.localizedDescription)")
+                        return nil
+                    }
+                })
             }
-            
-            meals = documents.compactMap({ queryDocumentSnapshot in
-                let result = Result { try queryDocumentSnapshot.data(as: Meal.self) }
-                switch result {
-                case .success(let meal):
-                    print(meal.id!)
-                    return meal
-                case .failure(let error):
-                    print("Failed to decode fetched meal data")
-                    // A Meal value could not be initalized from the DocmentSnapshot.
-//                    switch error {
-//                    case DecodingError.typeMismatch(_, let context):
-//                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-//                    case DecodingError.valueNotFound(_, let context):
-//                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-//                    case DecodingError.keyNotFound(_, let context):
-//                        self?.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-//                    case DecodingError.dataCorrupted(let key):
-//                        self?.errorMessage = "\(error.localizedDescription): \(key)"
-//                    default:
-//                        self?.errorMessage = "Error decoding document: \(error.localizedDescription)"
-//                    }
-                    return nil
-                }
-            })
         }
     }
 }

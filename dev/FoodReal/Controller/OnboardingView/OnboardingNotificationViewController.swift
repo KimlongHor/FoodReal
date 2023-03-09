@@ -175,10 +175,9 @@ class OnboardingNotificationViewController: UIViewController {
     
     
     @objc func didTapContinueButton() {
-        let postingWall = PostingWallViewController()
-        postingWall.modalPresentationStyle = .fullScreen
-        postingWall.modalTransitionStyle = .crossDissolve
-        present(postingWall, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainNavigationController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainNavigationController)
     }
 }
 

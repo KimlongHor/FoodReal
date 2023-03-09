@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseAuth
 
 class FirebaseDB {
     static let db = Firestore.firestore()
@@ -31,9 +32,19 @@ class FirebaseDB {
         }
     }
     
+  static func signOut() {
+        let firebaseAuth = Auth.auth()
+        do {
+          try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
+    }
+    
     static func getData(lastDocSnapShot: DocumentSnapshot?, completion: @escaping(([Meal]?, DocumentSnapshot?, Error?) -> ())) {
         var query: Query!
         var newLastDocSnapshot: DocumentSnapshot?
+
         var meals: [Meal]? {
             didSet {
                 completion(meals, newLastDocSnapshot, nil)

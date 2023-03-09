@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371293972999AC3F0030E49F /* FirebaseDB.swift */; };
 		3712939A2999BDC60030E49F /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371293992999BDC60030E49F /* Meal.swift */; };
+		375CA84329B847DB00EE3106 /* OnboardingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA83D29B847DB00EE3106 /* OnboardingNotificationViewController.swift */; };
+		375CA84429B847DB00EE3106 /* OnboardingNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA83E29B847DB00EE3106 /* OnboardingNameViewController.swift */; };
+		375CA84529B847DB00EE3106 /* OnboardingBirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA83F29B847DB00EE3106 /* OnboardingBirthdayViewController.swift */; };
+		375CA84629B847DB00EE3106 /* OnboardingEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84029B847DB00EE3106 /* OnboardingEmailViewController.swift */; };
+		375CA84729B847DB00EE3106 /* OnboardingUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84129B847DB00EE3106 /* OnboardingUsernameViewController.swift */; };
+		375CA84829B847DB00EE3106 /* OnboardingPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */; };
+		375CA84D29B84A3100EE3106 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84C29B84A3100EE3106 /* User.swift */; };
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
 		D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1169DDC299EDC8C004CD72B /* CameraViewController.swift */; };
@@ -32,6 +39,13 @@
 		3624F7410E4462FB8E494F08 /* Pods-FoodReal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.release.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.release.xcconfig"; sourceTree = "<group>"; };
 		371293972999AC3F0030E49F /* FirebaseDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDB.swift; sourceTree = "<group>"; };
 		371293992999BDC60030E49F /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		375CA83D29B847DB00EE3106 /* OnboardingNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNotificationViewController.swift; sourceTree = "<group>"; };
+		375CA83E29B847DB00EE3106 /* OnboardingNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingNameViewController.swift; sourceTree = "<group>"; };
+		375CA83F29B847DB00EE3106 /* OnboardingBirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingBirthdayViewController.swift; sourceTree = "<group>"; };
+		375CA84029B847DB00EE3106 /* OnboardingEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingEmailViewController.swift; sourceTree = "<group>"; };
+		375CA84129B847DB00EE3106 /* OnboardingUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingUsernameViewController.swift; sourceTree = "<group>"; };
+		375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPasswordViewController.swift; sourceTree = "<group>"; };
+		375CA84C29B84A3100EE3106 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
@@ -66,6 +80,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		375CA84929B8480000EE3106 /* OnboardingView */ = {
+			isa = PBXGroup;
+			children = (
+				375CA83E29B847DB00EE3106 /* OnboardingNameViewController.swift */,
+				375CA83F29B847DB00EE3106 /* OnboardingBirthdayViewController.swift */,
+				375CA84029B847DB00EE3106 /* OnboardingEmailViewController.swift */,
+				375CA84129B847DB00EE3106 /* OnboardingUsernameViewController.swift */,
+				375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */,
+				375CA83D29B847DB00EE3106 /* OnboardingNotificationViewController.swift */,
+			);
+			path = OnboardingView;
+			sourceTree = "<group>";
+		};
 		974D8C68D2D6705EEFCF183D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				371293992999BDC60030E49F /* Meal.swift */,
+				375CA84C29B84A3100EE3106 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				371293972999AC3F0030E49F /* FirebaseDB.swift */,
+				375CA84929B8480000EE3106 /* OnboardingView */,
 				D146E91C298A415400845BA5 /* PostingWallViewController.swift */,
 				D1C44496299D625C0063206B /* SettingViewController.swift */,
 				D1169DDC299EDC8C004CD72B /* CameraViewController.swift */,
@@ -281,14 +310,21 @@
 				D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */,
 				D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */,
 				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
+				375CA84729B847DB00EE3106 /* OnboardingUsernameViewController.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
 				D146E919298A415400845BA5 /* AppDelegate.swift in Sources */,
+				375CA84429B847DB00EE3106 /* OnboardingNameViewController.swift in Sources */,
 				D126275D29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift in Sources */,
+				375CA84829B847DB00EE3106 /* OnboardingPasswordViewController.swift in Sources */,
+				375CA84329B847DB00EE3106 /* OnboardingNotificationViewController.swift in Sources */,
 				D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */,
 				D1C44497299D625C0063206B /* SettingViewController.swift in Sources */,
+				375CA84529B847DB00EE3106 /* OnboardingBirthdayViewController.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
+				375CA84D29B84A3100EE3106 /* User.swift in Sources */,
 				3712939A2999BDC60030E49F /* Meal.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,
+				375CA84629B847DB00EE3106 /* OnboardingEmailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

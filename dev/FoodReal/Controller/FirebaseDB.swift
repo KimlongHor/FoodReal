@@ -13,8 +13,9 @@ import FirebaseAuth
 class FirebaseDB {
     static let db = Firestore.firestore()
     static let mealsRef = "Meals"
+    static let usersRef = "Users"
     static let dateTimeField = "dateTime"
-        
+    
     static func add(aPublicMeal meal: Meal, completion: @escaping((String?, Error?) -> ())) {
         var ref: DocumentReference? = nil
         do {
@@ -32,19 +33,36 @@ class FirebaseDB {
         }
     }
     
-  static func signOut() {
+    static func signOut() {
         let firebaseAuth = Auth.auth()
         do {
-          try firebaseAuth.signOut()
+            try firebaseAuth.signOut()
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    static func add(aNewUser user: User, completion: @escaping((String?, Error?) -> ())) {
+        var ref: DocumentReference? = nil
+        do {
+            ref = try db.collection(usersRef).addDocument(from: user) {
+                err in
+                if let err = err {
+                    completion(nil, err)
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
+                    completion("Successfully added to the database", nil)
+                }
+            }
+        } catch {
+            print(error)
         }
     }
     
     static func getData(lastDocSnapShot: DocumentSnapshot?, completion: @escaping(([Meal]?, DocumentSnapshot?, Error?) -> ())) {
         var query: Query!
         var newLastDocSnapshot: DocumentSnapshot?
-
+        
         var meals: [Meal]? {
             didSet {
                 completion(meals, newLastDocSnapshot, nil)

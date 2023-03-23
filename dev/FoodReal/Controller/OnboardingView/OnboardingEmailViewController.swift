@@ -46,6 +46,8 @@ class OnboardingEmailViewController: UIViewController {
         emailField.placeholder = "Your email"
         emailField.adjustsFontSizeToFitWidth = true
         emailField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        emailField.autocorrectionType = .no
+        emailField.autocapitalizationType = .none
         return emailField
     }()
     

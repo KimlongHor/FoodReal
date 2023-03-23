@@ -42,10 +42,9 @@ class SettingViewController: UIViewController {
     
     @objc func didTapSignOutButton() {
         FirebaseDB.signOut()
-        let onboardingNameViewController = OnboardingNameViewController()
-        onboardingNameViewController.modalPresentationStyle = .fullScreen
-        onboardingNameViewController.modalTransitionStyle = .crossDissolve
-        present(onboardingNameViewController, animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let onboardingNameViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingNameViewController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(onboardingNameViewController)
     }
     
     

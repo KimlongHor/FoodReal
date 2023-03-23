@@ -46,6 +46,8 @@ class OnboardingUsernameViewController: UIViewController {
         usernameField.placeholder = "Your username"
         usernameField.adjustsFontSizeToFitWidth = true
         usernameField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        usernameField.autocorrectionType = .no
+        usernameField.autocapitalizationType = .none
         return usernameField
     }()
     

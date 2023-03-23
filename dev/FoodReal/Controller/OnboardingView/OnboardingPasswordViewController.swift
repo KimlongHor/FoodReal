@@ -9,10 +9,10 @@ import UIKit
 import FirebaseAuth
 
 class OnboardingPasswordViewController: UIViewController {
-    private var user: User
+    private var newUser: User
     
     init(user: User) {
-        self.user = user
+        self.newUser = user
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -47,6 +47,8 @@ class OnboardingPasswordViewController: UIViewController {
         passwordField.adjustsFontSizeToFitWidth = true
         passwordField.isSecureTextEntry = true
         passwordField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        passwordField.autocorrectionType = .no
+        passwordField.autocapitalizationType = .none
         return passwordField
     }()
     
@@ -123,20 +125,28 @@ class OnboardingPasswordViewController: UIViewController {
             
     
     @objc func didTapContinueButton() {
-        Auth.auth().createUser(withEmail: user.email!, password: passwordField.text!) {
+        Auth.auth().createUser(withEmail: newUser.email!, password: passwordField.text!) {
             authResult, error in
             if let error = error {
                 print("Failed to create user: \(error.localizedDescription)")
             }
-            self.user.uid = authResult?.user.uid
-            print(self.user)
-            let postingWall = OnboardingNotificationViewController()
-            postingWall.modalPresentationStyle = .fullScreen
-            postingWall.modalTransitionStyle = .crossDissolve
-            self.present(postingWall, animated: true)
+            self.newUser.authID = authResult?.user.uid
+            print(self.newUser)
+            FirebaseDB.add(aNewUser: self.newUser) { success, error in
+                if let error = error {
+                    print("Failed to add to database: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let successMessage = success else {return}
+                print(successMessage)
+            }
         }
-        
-        
+        let postingWall = OnboardingNotificationViewController()
+        postingWall.modalPresentationStyle = .fullScreen
+        postingWall.modalTransitionStyle = .crossDissolve
+        self.present(postingWall, animated: true)
+
     }
 
     required init?(coder: NSCoder) {

@@ -25,6 +25,7 @@ class PostingWallViewController: UIViewController {
     
     var lastDocumentSnapshot: DocumentSnapshot!
     var fetchingMore = false
+    let notiHours = [8, 12, 6]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,40 @@ class PostingWallViewController: UIViewController {
         setupRefreshControl()
         setupPostCollectionView()
         setupNavBar()
+        setupNotification()
+    }
+    
+    fileprivate func setupNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                let content = UNMutableNotificationContent()
+                content.title = "Time to FoodReal."
+                content.body = "Let's share your meal with the world!"
+                content.badge = NSNumber(value: 1)
+                content.sound = .default
+                
+                for hour in self.notiHours {
+                    var dateComp = DateComponents()
+                    dateComp.hour = hour
+                    dateComp.minute = 0
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: true)
+                    let request = UNNotificationRequest(identifier: "ID\(hour)", content: content, trigger: trigger)
+                    
+                    center.add(request) { (error : Error?) in
+                        if let theError = error {
+                            print(theError.localizedDescription)
+                        }
+                    }
+                }
+                
+            case .denied, .notDetermined, .provisional, .ephemeral:
+                self.presentPopUp(with: "Please consider allowing notification to recieve the best experience")
+            @unknown default:
+                fatalError()
+            }
+        }
     }
     
     fileprivate func setupRefreshControl() {
@@ -144,9 +179,13 @@ class PostingWallViewController: UIViewController {
     }
     
     fileprivate func handleCameraForSimulator() {
+        presentPopUp(with: "The feature is not availble on simulators")
+    }
+    
+    fileprivate func presentPopUp(with message: String) {
         DispatchQueue.main.async {
             let savedLabel = UILabel()
-            savedLabel.text = "The feature is not availble on simulators"
+            savedLabel.text = message
             savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
             savedLabel.textColor = .white
             savedLabel.numberOfLines = 0

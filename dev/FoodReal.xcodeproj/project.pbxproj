@@ -19,6 +19,8 @@
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
 		D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1169DDC299EDC8C004CD72B /* CameraViewController.swift */; };
+		D11B9C9E29D64B3500F4F851 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B9C9C29D64B3500F4F851 /* SettingTableViewCell.swift */; };
+		D11B9C9F29D64B3500F4F851 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D11B9C9D29D64B3500F4F851 /* SettingTableViewCell.xib */; };
 		D126275D29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */; };
 		D146E919298A415400845BA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E918298A415400845BA5 /* AppDelegate.swift */; };
 		D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D146E91A298A415400845BA5 /* SceneDelegate.swift */; };
@@ -50,6 +52,8 @@
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
 		D1169DDC299EDC8C004CD72B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		D11B9C9C29D64B3500F4F851 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		D11B9C9D29D64B3500F4F851 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		D146E915298A415400845BA5 /* FoodReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D146E918298A415400845BA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 				D1C44492299D60270063206B /* PostCollectionViewCell.swift */,
 				D1C44493299D60270063206B /* PostCollectionViewCell.xib */,
 				D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */,
+				D11B9C9C29D64B3500F4F851 /* SettingTableViewCell.swift */,
+				D11B9C9D29D64B3500F4F851 /* SettingTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 			files = (
 				D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */,
 				37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */,
+				D11B9C9F29D64B3500F4F851 /* SettingTableViewCell.xib in Resources */,
 				D1BA9C4829B7E45200970131 /* loading.json in Resources */,
 				D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */,
 				D146E922298A415400845BA5 /* Assets.xcassets in Resources */,
@@ -319,6 +326,7 @@
 				375CA84329B847DB00EE3106 /* OnboardingNotificationViewController.swift in Sources */,
 				D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */,
 				D1C44497299D625C0063206B /* SettingViewController.swift in Sources */,
+				D11B9C9E29D64B3500F4F851 /* SettingTableViewCell.swift in Sources */,
 				375CA84529B847DB00EE3106 /* OnboardingBirthdayViewController.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
 				375CA84D29B84A3100EE3106 /* User.swift in Sources */,

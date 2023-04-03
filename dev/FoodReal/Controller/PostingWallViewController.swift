@@ -25,7 +25,7 @@ class PostingWallViewController: UIViewController {
     
     var lastDocumentSnapshot: DocumentSnapshot!
     var fetchingMore = false
-    let notiHours = [8, 12, 6]
+    let notiHours = [8, 12, 18]
     
     override func viewDidLoad() {
         super.viewDidLoad()

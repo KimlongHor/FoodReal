@@ -35,6 +35,8 @@
 		D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44492299D60270063206B /* PostCollectionViewCell.swift */; };
 		D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C44493299D60270063206B /* PostCollectionViewCell.xib */; };
 		D1C44497299D625C0063206B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44496299D625C0063206B /* SettingViewController.swift */; };
+		D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */; };
+		D1FCDE0629DDE36F001810E3 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		D1C44492299D60270063206B /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1C44493299D60270063206B /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1C44496299D625C0063206B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,8 @@
 				D126275C29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift */,
 				D11B9C9C29D64B3500F4F851 /* SettingTableViewCell.swift */,
 				D11B9C9D29D64B3500F4F851 /* SettingTableViewCell.xib */,
+				D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */,
+				D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,6 +265,7 @@
 				D11B9C9F29D64B3500F4F851 /* SettingTableViewCell.xib in Resources */,
 				D1BA9C4829B7E45200970131 /* loading.json in Resources */,
 				D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */,
+				D1FCDE0629DDE36F001810E3 /* ProfileTableViewCell.xib in Resources */,
 				D146E922298A415400845BA5 /* Assets.xcassets in Resources */,
 				D146E920298A415400845BA5 /* Main.storyboard in Resources */,
 				D1ADD6FD29B86C0D00AD2B88 /* smiley.json in Resources */,
@@ -329,6 +336,7 @@
 				D11B9C9E29D64B3500F4F851 /* SettingTableViewCell.swift in Sources */,
 				375CA84529B847DB00EE3106 /* OnboardingBirthdayViewController.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
+				D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */,
 				375CA84D29B84A3100EE3106 /* User.swift in Sources */,
 				3712939A2999BDC60030E49F /* Meal.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,

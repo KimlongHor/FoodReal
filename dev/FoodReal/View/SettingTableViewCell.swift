@@ -17,7 +17,7 @@ class SettingTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    func setupView(with model: SettingOption) {
+    func setupView(with model: SettingsOption) {
         iconImageView.image = model.icon
         nameLabel.text = model.title
     }

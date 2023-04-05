@@ -18,7 +18,6 @@ struct SettingOption {
     let handle: (() -> Void)
 }
 
-
 class SettingViewController: UIViewController {
     
     private var settingTableView: UITableView!
@@ -34,6 +33,12 @@ class SettingViewController: UIViewController {
         return button
     }()
     
+    private let headerView: UIView = {
+        var view = UIView()
+        
+        return view
+    }()
+    
     var settings = [Section]()
 
     override func viewDidLoad() {
@@ -44,8 +49,11 @@ class SettingViewController: UIViewController {
     }
     
     fileprivate func setupTableView() {
-        settingTableView = UITableView()
+        settingTableView = UITableView(frame: .zero, style: .insetGrouped)
         settingTableView.backgroundColor = .black
+        settingTableView.separatorStyle = .singleLine
+        settingTableView.separatorColor = .darkGray
+        settingTableView.separatorInset = .zero
         settingTableView.register(UINib(nibName: "SettingTableViewCell", bundle: .main), forCellReuseIdentifier: "settingCell")
         settingTableView.delegate = self
         settingTableView.dataSource = self
@@ -56,16 +64,16 @@ class SettingViewController: UIViewController {
                 SettingOption(title: "Memories", icon: UIImage(systemName: "calendar"), handle: {})]))
         
         settings.append(Section(title: "SETTINGS", options: [
-            SettingOption(title: "Notifications", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "Privacy", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "Time Zone: Americas", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "Other", icon: UIImage(systemName: "calendar"), handle: {})]))
+            SettingOption(title: "Notifications", icon: UIImage(named: "notification"), handle: {}),
+            SettingOption(title: "Privacy", icon: UIImage(named: "privacy"), handle: {}),
+            SettingOption(title: "Time Zone: Americas", icon: UIImage(named: "time-zone"), handle: {}),
+            SettingOption(title: "Other", icon: UIImage(named: "other"), handle: {})]))
         
         settings.append(Section(title: "ABOUT", options: [
-            SettingOption(title: "Share FoodReal", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "Rate FoodReal", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "Help", icon: UIImage(systemName: "calendar"), handle: {}),
-            SettingOption(title: "About", icon: UIImage(systemName: "calendar"), handle: {})]))
+            SettingOption(title: "Share FoodReal", icon: UIImage(named: "share"), handle: {}),
+            SettingOption(title: "Rate FoodReal", icon: UIImage(named: "rate"), handle: {}),
+            SettingOption(title: "Help", icon: UIImage(named: "help"), handle: {}),
+            SettingOption(title: "About", icon: UIImage(named: "about"), handle: {})]))
     }
 
     fileprivate func setupView() {

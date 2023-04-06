@@ -42,7 +42,7 @@ class OnboardingPasswordViewController: UIViewController {
         passwordField.textColor = .white
         passwordField.font = UIFont.boldSystemFont(ofSize: 40)
         passwordField.textAlignment = .center
-        passwordField.backgroundColor = .systemPink
+//        passwordField.backgroundColor = .systemPink
         passwordField.placeholder = "Your password"
         passwordField.adjustsFontSizeToFitWidth = true
         passwordField.isSecureTextEntry = true

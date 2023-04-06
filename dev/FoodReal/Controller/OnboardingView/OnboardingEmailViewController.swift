@@ -22,7 +22,7 @@ class OnboardingEmailViewController: UIViewController {
         header.textColor = .white
         header.font = UIFont.boldSystemFont(ofSize: 25); //anything like attributed string?
         header.textAlignment = .center
-        header.backgroundColor = .systemRed
+//        header.backgroundColor = .systemRed
         return header
     }()
     
@@ -42,7 +42,7 @@ class OnboardingEmailViewController: UIViewController {
         emailField.textColor = .white
         emailField.font = UIFont.boldSystemFont(ofSize: 40)
         emailField.textAlignment = .center
-        emailField.backgroundColor = .systemPink
+//        emailField.backgroundColor = .systemPink
         emailField.placeholder = "Your email"
         emailField.adjustsFontSizeToFitWidth = true
         emailField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)

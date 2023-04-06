@@ -47,6 +47,8 @@ class PostCollectionViewCell: UICollectionViewCell {
     func setupCellView(meal: Meal) {
         frontImageView.image = UIImage(data: meal.frontImage ?? Data())
         backImageView.image = UIImage(data: meal.backImage ?? Data())
+        timeLabel.text = meal.dateTime?.description
+        nameLabel.text = meal.authorUsername
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {

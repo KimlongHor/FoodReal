@@ -8,6 +8,7 @@
 import LBTATools
 import UIKit
 import AVFoundation
+import FirebaseAuth
 
 protocol CameraViewDelegate {
     func didPost()
@@ -251,20 +252,37 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         frontData = data  //<----
         isBothImageCaptured = true
         
-        let meal = Meal(authorUsername: "Kim", authorProfilePicture: "Kim", description: "Testing", likes: [""], frontImage: frontData ?? data, backImage: backData ?? data, privateData: .init(authorUserID: "Kim")) //<----
+        // Get currently signed in user
+        let authUser = Auth.auth().currentUser
         
-        // display captured images
-        let containerView = PreviewPhotoContainerView()
-        containerView.meal = meal
-        containerView.backImageView.image = backImage
-        containerView.frontImageView.image = frontImage
-        view.addSubview(containerView)
-        containerView.anchor(top: previewRoundedView.topAnchor, leading: previewRoundedView.leadingAnchor, bottom: previewRoundedView.bottomAnchor, trailing: previewRoundedView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: previewRoundedView.frame.width, height: previewRoundedView.frame.height))
-        containerView.layer.masksToBounds = true
-        
-        // save containerView to the previewContainerView to handle when the user pressed retake
-        previewContainerView = containerView
-        
-        retakeButton.isHidden = false
+        if let authUser = authUser {
+            FirebaseDB.getUser(uid: authUser.uid) { [self] user, error in
+                if let error = error {
+                    print("Failed fetching data \(error.localizedDescription)")
+                    return
+                }
+                
+                if let user = user {
+                    //**** didnt get to test no connection to iphone
+                    let meal = Meal(authorUsername: user.username ?? "TestUsr", authorProfilePicture: "noimageyet", description: "Testing", likes: [], frontImage: frontData ?? data, backImage: backData ?? data, privateData: .init(authorUserID: authUser.uid)) //<----
+                    
+                    // display captured images
+                    let containerView = PreviewPhotoContainerView()
+                    containerView.meal = meal
+                    containerView.backImageView.image = backImage
+                    containerView.frontImageView.image = frontImage
+                    view.addSubview(containerView)
+                    containerView.anchor(top: previewRoundedView.topAnchor, leading: previewRoundedView.leadingAnchor, bottom: previewRoundedView.bottomAnchor, trailing: previewRoundedView.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: previewRoundedView.frame.width, height: previewRoundedView.frame.height))
+                    containerView.layer.masksToBounds = true
+                    
+                    // save containerView to the previewContainerView to handle when the user pressed retake
+                    previewContainerView = containerView
+                    
+                    retakeButton.isHidden = false
+                    
+                    //*** not sure about moving this chunk into getuser
+                }
+            }
+        }
     }
 }

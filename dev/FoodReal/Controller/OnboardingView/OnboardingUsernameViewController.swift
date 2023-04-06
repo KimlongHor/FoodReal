@@ -22,7 +22,7 @@ class OnboardingUsernameViewController: UIViewController {
         header.textColor = .white
         header.font = UIFont.boldSystemFont(ofSize: 25); //anything like attributed string?
         header.textAlignment = .center
-        header.backgroundColor = .systemRed
+//        header.backgroundColor = .systemRed
         return header
     }()
     
@@ -42,7 +42,7 @@ class OnboardingUsernameViewController: UIViewController {
         usernameField.textColor = .white
         usernameField.font = UIFont.boldSystemFont(ofSize: 40)
         usernameField.textAlignment = .center
-        usernameField.backgroundColor = .systemPink
+//        usernameField.backgroundColor = .systemPink
         usernameField.placeholder = "Your username"
         usernameField.adjustsFontSizeToFitWidth = true
         usernameField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)

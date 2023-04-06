@@ -41,7 +41,7 @@ class OnboardingBirthdayViewController: UIViewController {
         month.textColor = .white
         month.font = UIFont.boldSystemFont(ofSize: 40)
         month.textAlignment = .left
-        month.backgroundColor = .green
+//        month.backgroundColor = .green
         month.placeholder = "MM"
         month.contentMode = .scaleAspectFit
         month.keyboardType = .decimalPad
@@ -54,7 +54,7 @@ class OnboardingBirthdayViewController: UIViewController {
         day.textColor = .white
         day.font = UIFont.boldSystemFont(ofSize: 40)
         day.textAlignment = .left
-        day.backgroundColor = .systemBlue
+//        day.backgroundColor = .systemBlue
         day.placeholder = "DD"
         day.contentMode = .scaleAspectFit
         day.keyboardType = .decimalPad
@@ -67,7 +67,7 @@ class OnboardingBirthdayViewController: UIViewController {
         year.textColor = .white
         year.font = UIFont.boldSystemFont(ofSize: 40)
         year.textAlignment = .left
-        year.backgroundColor = .green
+//        year.backgroundColor = .green
         year.placeholder = "YYYY"
         year.contentMode = .scaleAspectFit
         year.keyboardType = .decimalPad

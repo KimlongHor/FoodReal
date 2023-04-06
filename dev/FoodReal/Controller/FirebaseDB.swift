@@ -100,5 +100,33 @@ class FirebaseDB {
             }
         }
     }
+    
+    static func getUserProfile(uid: String, completion: @escaping((User?, Error?) -> ())) {
+        let query = db.collection(mealsRef).whereField("authID", isEqualTo: uid)
+        query.getDocuments { snapshot, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            } else if snapshot!.isEmpty {
+                completion(nil, nil)
+                return
+            } else {
+                do {
+                    for document in snapshot!.documents {
+                        var user: User = try document.data(as: User.self)
+                        completion(user, error)
+                        print("\(document.documentID) => \(document.data())")
+                        return
+                    }
+                } catch {
+                    completion(nil, nil)
+                    print("ERROR OCCURRED WHILE GETTING USER PROFILE")
+                }
+            }
+            
+        }
+    }
+    
+    static func addLike(to meal: Meal, uid: String)
 }
 

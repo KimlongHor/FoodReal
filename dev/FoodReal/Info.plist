@@ -23,9 +23,5 @@
 	</dict>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Our app needs to access to your photo library to save the images</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Our app needs to access to your photo library to save the images</string>
 </dict>
 </plist>

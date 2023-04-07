@@ -61,6 +61,7 @@ class OnboardingPasswordViewController: UIViewController {
         continueButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         continueButton.layer.cornerRadius = 20
         continueButton.isEnabled = false
+        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
         return continueButton
     }()
     
@@ -103,7 +104,6 @@ class OnboardingPasswordViewController: UIViewController {
         view.addSubview(passwordField)
         view.addSubview(continueButton)
         
-        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside) // does not work if I call didTapContinueButton() aka with parenthesis
         addConstraints()
     }
     
@@ -139,13 +139,21 @@ class OnboardingPasswordViewController: UIViewController {
                 }
                 
                 guard let successMessage = success else {return}
-                print(successMessage)
+                print("Successfully created user: \(successMessage)")
+            }
+            
+            Auth.auth().signIn(withEmail: self.newUser.email!, password: self.passwordField.text!) { [weak self] authResult, error in
+                guard self != nil else { return }   // what's the weak self for here? TODO: QUESTION
+                if let error = error {
+                    print("Failed to sign in user: \(error.localizedDescription)")
+                    return
+                }
+                let postingWall = OnboardingNotificationViewController()
+                postingWall.modalPresentationStyle = .fullScreen
+                postingWall.modalTransitionStyle = .crossDissolve
+                self!.present(postingWall, animated: true)
             }
         }
-        let postingWall = OnboardingNotificationViewController()
-        postingWall.modalPresentationStyle = .fullScreen
-        postingWall.modalTransitionStyle = .crossDissolve
-        self.present(postingWall, animated: true)
 
     }
 

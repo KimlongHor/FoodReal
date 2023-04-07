@@ -8,11 +8,13 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import Lottie
+import FirebaseAuth
 
 class PostingWallViewController: UIViewController {
     
     @IBOutlet weak var postCollectionView: UICollectionView!
     
+    var currUser: User?
     let refreshControl = UIRefreshControl()
     var loadingView: LottieAnimationView?
     var animationView = UIView(backgroundColor: .black) // we need this as a black background for loadingView
@@ -29,11 +31,30 @@ class PostingWallViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchUser()
         setupAnimationViews()
         setupRefreshControl()
         setupPostCollectionView()
         setupNavBar()
         setupNotification()
+    }
+    
+    fileprivate func fetchUser() {
+        guard let currAuthID = Auth.auth().currentUser?.uid else {
+            FirebaseDB.signOut()
+            return
+        }
+        FirebaseDB.getUserProfile(authID: currAuthID) { user, error in
+            if let error = error {
+                print("Failed fetching user profile \(error.localizedDescription)")
+                return
+            }
+            guard let user = user else {
+                print("No matching user profile found for \(currAuthID)")
+                return
+            }
+            self.currUser = user
+        }
     }
     
     fileprivate func setupNotification() {
@@ -173,6 +194,7 @@ class PostingWallViewController: UIViewController {
             handleCameraForSimulator()
         #else
             let cameraVC = CameraViewController()
+            cameraVC.currUser = self.currUser!
             cameraVC.delegate = self
             navigationController?.pushViewController(cameraVC, animated: true)
         #endif

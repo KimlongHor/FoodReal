@@ -19,13 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if (Auth.auth().currentUser==nil) {
-//            let onboardingNameViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingNameViewController")
-//            window?.rootViewController = onboardingNameViewController
-//        } else {
+        if (Auth.auth().currentUser==nil) {
+            let onboardingNameViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingNameViewController")
+            window?.rootViewController = onboardingNameViewController
+        } else {
+            print("Loading main navigation: \(Auth.auth().currentUser?.uid)")
             let mainNavigationController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController")
             window?.rootViewController = mainNavigationController
-//        }
+        }
     }
     
     func changeRootViewController(_ vc: UIViewController, animated: Bool = true) {

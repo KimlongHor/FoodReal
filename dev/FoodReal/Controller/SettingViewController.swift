@@ -106,9 +106,7 @@ class SettingViewController: UIViewController {
     
     @objc func didTapSignOutButton() {
         FirebaseDB.signOut()
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let onboardingNameViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingNameViewController")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(onboardingNameViewController)
+        // SWITCH VIEW CONTROLLER MOCVED TO SIGNOUT FUNCTION IN DBCLASS
     }
 }
 

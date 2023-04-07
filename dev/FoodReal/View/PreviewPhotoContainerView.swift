@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Photos
+import FirebaseAuth
 
 class PreviewPhotoContainerView: UIView {
     
@@ -57,6 +58,7 @@ class PreviewPhotoContainerView: UIView {
             let cameraViewController = self?.parentViewController as? CameraViewController
             cameraViewController?.delegate?.didPost()
             cameraViewController?.navigationController?.popToRootViewController(animated: true)
+            
         }
     }
     

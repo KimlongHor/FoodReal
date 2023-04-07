@@ -37,6 +37,9 @@ class FirebaseDB {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let onboardingNameViewController = storyboard.instantiateViewController(withIdentifier: "OnboardingNameViewController")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(onboardingNameViewController)
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -101,32 +104,32 @@ class FirebaseDB {
         }
     }
     
-    static func getUserProfile(uid: String, completion: @escaping((User?, Error?) -> ())) {
-        let query = db.collection(mealsRef).whereField("authID", isEqualTo: uid)
+    static func getUserProfile(authID: String, completion: @escaping((User?, Error?) -> ())) {
+        let query = db.collection(usersRef).whereField("authID", isEqualTo: authID)
         query.getDocuments { snapshot, error in
             if let error = error {
                 completion(nil, error)
-                return
             } else if snapshot!.isEmpty {
+                print("No matching user profile found")
                 completion(nil, nil)
-                return
             } else {
                 do {
                     for document in snapshot!.documents {
-                        var user: User = try document.data(as: User.self)
-                        completion(user, error)
+                        let user: User = try document.data(as: User.self)
                         print("\(document.documentID) => \(document.data())")
-                        return
+                        completion(user, error)
                     }
                 } catch {
+                    print("Error occurred while loading document from snapshot")
                     completion(nil, nil)
-                    print("ERROR OCCURRED WHILE GETTING USER PROFILE")
                 }
             }
-            
         }
+        return
     }
     
-    static func addLike(to meal: Meal, uid: String)
+    static func addLike(to meal: Meal, likedUser uid: String) {
+        
+    }
 }
 

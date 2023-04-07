@@ -17,6 +17,8 @@
 		375CA84829B847DB00EE3106 /* OnboardingPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */; };
 		375CA84D29B84A3100EE3106 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84C29B84A3100EE3106 /* User.swift */; };
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
+		37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D786D429E029FB004E7F42 /* SignInEmailViewController.swift */; };
+		37D786D729E029FB004E7F42 /* SignInPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D786D529E029FB004E7F42 /* SignInPasswordViewController.swift */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
 		D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1169DDC299EDC8C004CD72B /* CameraViewController.swift */; };
 		D11B9C9E29D64B3500F4F851 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11B9C9C29D64B3500F4F851 /* SettingTableViewCell.swift */; };
@@ -51,6 +53,8 @@
 		375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPasswordViewController.swift; sourceTree = "<group>"; };
 		375CA84C29B84A3100EE3106 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37D786D429E029FB004E7F42 /* SignInEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInEmailViewController.swift; sourceTree = "<group>"; };
+		37D786D529E029FB004E7F42 /* SignInPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPasswordViewController.swift; sourceTree = "<group>"; };
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D027C4D2B7D26FA575835E9A /* Pods-FoodReal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodReal.debug.xcconfig"; path = "Target Support Files/Pods-FoodReal/Pods-FoodReal.debug.xcconfig"; sourceTree = "<group>"; };
 		D1169DDC299EDC8C004CD72B /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +103,15 @@
 				375CA83D29B847DB00EE3106 /* OnboardingNotificationViewController.swift */,
 			);
 			path = OnboardingView;
+			sourceTree = "<group>";
+		};
+		37D786D329E02959004E7F42 /* SignInView */ = {
+			isa = PBXGroup;
+			children = (
+				37D786D429E029FB004E7F42 /* SignInEmailViewController.swift */,
+				37D786D529E029FB004E7F42 /* SignInPasswordViewController.swift */,
+			);
+			path = SignInView;
 			sourceTree = "<group>";
 		};
 		974D8C68D2D6705EEFCF183D /* Pods */ = {
@@ -178,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				371293972999AC3F0030E49F /* FirebaseDB.swift */,
+				37D786D329E02959004E7F42 /* SignInView */,
 				375CA84929B8480000EE3106 /* OnboardingView */,
 				D146E91C298A415400845BA5 /* PostingWallViewController.swift */,
 				D1C44496299D625C0063206B /* SettingViewController.swift */,
@@ -323,6 +337,7 @@
 			files = (
 				D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */,
 				D1169DDD299EDC8C004CD72B /* CameraViewController.swift in Sources */,
+				37D786D729E029FB004E7F42 /* SignInPasswordViewController.swift in Sources */,
 				D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */,
 				375CA84729B847DB00EE3106 /* OnboardingUsernameViewController.swift in Sources */,
 				D146E91D298A415400845BA5 /* PostingWallViewController.swift in Sources */,
@@ -338,6 +353,7 @@
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
 				D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */,
 				375CA84D29B84A3100EE3106 /* User.swift in Sources */,
+				37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */,
 				3712939A2999BDC60030E49F /* Meal.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,
 				375CA84629B847DB00EE3106 /* OnboardingEmailViewController.swift in Sources */,

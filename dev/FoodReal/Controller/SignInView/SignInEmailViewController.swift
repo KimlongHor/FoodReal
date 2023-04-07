@@ -1,15 +1,14 @@
 //
-//  OnboardingNameViewController.swift
+//  OnboardingEmailViewController.swift
 //  FoodRealPlayground
 //
-//  Created by Yunseo Han on 2/27/23.
+//  Created by Yunseo Han on 2/28/23.
 //
 
 import UIKit
 
-class OnboardingNameViewController: UIViewController {
-    
-    
+class SignInEmailViewController: UIViewController {
+
     private let header: UILabel = { // when do you create objects vs functions?
         let header = UILabel()
         header.translatesAutoresizingMaskIntoConstraints = false
@@ -17,40 +16,33 @@ class OnboardingNameViewController: UIViewController {
         header.textColor = .white
         header.font = UIFont.boldSystemFont(ofSize: 25); //anything like attributed string?
         header.textAlignment = .center
+//        header.backgroundColor = .systemRed
         return header
     }()
     
     private let instruction: UILabel = {
         let instruction = UILabel()
         instruction.translatesAutoresizingMaskIntoConstraints = false
-        instruction.text = "What's your name?"
+        instruction.text = "Enter your email"
         instruction.textColor = .white
         instruction.font = UIFont.boldSystemFont(ofSize: 16)
         instruction.textAlignment = .center
         return instruction
     }()
     
-    private let nameField: UITextField = {
-        let nameField = UITextField()
-        nameField.translatesAutoresizingMaskIntoConstraints = false
-        nameField.textColor = .white
-        nameField.font = UIFont.boldSystemFont(ofSize: 40)
-        nameField.textAlignment = .center
-        nameField.placeholder = "Your name"
-        nameField.adjustsFontSizeToFitWidth = true
-        nameField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
-        nameField.autocorrectionType = .no
-        return nameField
-    }()
-    
-    private let signInButton: UIButton = {
-        let signInButton = UIButton()
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.setTitle("Sign in", for: .normal)
-        signInButton.setTitleColor(.systemBlue, for: .normal)
-        signInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        signInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
-        return signInButton
+    private let emailField: UITextField = {
+        let emailField = UITextField()
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.textColor = .white
+        emailField.font = UIFont.boldSystemFont(ofSize: 40)
+        emailField.textAlignment = .center
+//        emailField.backgroundColor = .systemPink
+        emailField.placeholder = "Your email"
+        emailField.adjustsFontSizeToFitWidth = true
+        emailField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
+        emailField.autocorrectionType = .no
+        emailField.autocapitalizationType = .none
+        return emailField
     }()
     
     private let continueButton: UIButton = {
@@ -66,6 +58,15 @@ class OnboardingNameViewController: UIViewController {
         return continueButton
     }()
     
+    private let signUpButton: UIButton = {
+        let signUpButton = UIButton()
+        signUpButton.translatesAutoresizingMaskIntoConstraints = false
+        signUpButton.setTitle("Sign up", for: .normal)
+        signUpButton.setTitleColor(.systemBlue, for: .normal)
+        signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        signUpButton.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
+        return signUpButton
+    }()
     
     private func addConstraints() {
         if #available(iOS 15.0, *) {
@@ -78,12 +79,11 @@ class OnboardingNameViewController: UIViewController {
                 instruction.topAnchor.constraint(equalTo: header.bottomAnchor, constant: view.safeAreaLayoutGuide.layoutFrame.height/25),
                 instruction.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 
-                // name field
-                nameField.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: view.safeAreaLayoutGuide.layoutFrame.height/40),
-                nameField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
-                nameField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40),
-                nameField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                
+                // date field
+                emailField.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: view.safeAreaLayoutGuide.layoutFrame.height/40),
+                emailField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 40),
+                emailField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40),
+                emailField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 
                 //continue button
                 continueButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
@@ -93,56 +93,56 @@ class OnboardingNameViewController: UIViewController {
                 continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 
                 //sign on button
-                signInButton.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -10),
-                signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                signUpButton.bottomAnchor.constraint(equalTo: continueButton.topAnchor, constant: -10),
+                signUpButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
         } else {
             // Fallback on earlier versions
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Onboarding name"
-        
         view.backgroundColor = .black
         // Do any additional setup after loading the view.
         view.addSubview(header)
         view.addSubview(instruction)
-        view.addSubview(nameField)
+        view.addSubview(emailField)
         view.addSubview(continueButton)
-        view.addSubview(signInButton)
+        view.addSubview(signUpButton)
         
+        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside) // does not work if I call didTapContinueButton() aka with parenthesis
         addConstraints()
     }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
     @objc fileprivate func handleTextInputChange() {
-        let nameIsEntered = nameField.text?.count ?? 0 > 0
-        continueButton.isEnabled = nameIsEntered
-        if (nameIsEntered) {
+        let emailIsEntered = emailField.text?.count ?? 0 > 0
+        if (emailIsEntered) {
+            continueButton.isEnabled = true
             continueButton.backgroundColor = .white
         } else {
+            continueButton.isEnabled = false
             continueButton.backgroundColor = .systemGray
         }
     }
-
-    @objc fileprivate func didTapContinueButton() {
-        let newUser = User(name: nameField.text)
-        let onboardingBirthdayViewController = OnboardingBirthdayViewController(user: newUser)
-        onboardingBirthdayViewController.modalPresentationStyle = .fullScreen
-        onboardingBirthdayViewController.modalTransitionStyle = .crossDissolve
-        present(onboardingBirthdayViewController, animated: true)
+    
+    
+    @objc func didTapContinueButton() {
+        let signInPasswordViewController = SignInPasswordViewController(email: self.emailField.text!)
+        signInPasswordViewController.modalPresentationStyle = .fullScreen
+        signInPasswordViewController.modalTransitionStyle = .crossDissolve
+        present(signInPasswordViewController, animated: true)
     }
     
-    @objc fileprivate func didTapSignInButton() {
-        let signInEmailViewController = SignInEmailViewController()
-        signInEmailViewController.modalPresentationStyle = .fullScreen
-        signInEmailViewController.modalTransitionStyle = .crossDissolve
-        present(signInEmailViewController, animated: true)
+    @objc func didTapSignUpButton() {
+        let onboardingNameViewController = OnboardingNameViewController()
+        onboardingNameViewController.modalPresentationStyle = .fullScreen
+        onboardingNameViewController.modalTransitionStyle = .crossDissolve
+        present(onboardingNameViewController, animated: true)
     }
 }

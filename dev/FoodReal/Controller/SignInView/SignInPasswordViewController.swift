@@ -7,21 +7,22 @@
 
 import UIKit
 import FirebaseAuth
+import Lottie
 
-class OnboardingPasswordViewController: UIViewController {
-    private var newUser: User
+class SignInPasswordViewController: UIViewController {
+    private var email: String
     
-    init(user: User) {
-        self.newUser = user
+    init(email: String) {
+        self.email = email
         super.init(nibName: nil, bundle: nil)
     }
 
-    private let header: UILabel = { // when do you create objects vs functions?
+    private let header: UILabel = {
         let header = UILabel()
         header.translatesAutoresizingMaskIntoConstraints = false
         header.text = "FoodReal."
         header.textColor = .white
-        header.font = UIFont.boldSystemFont(ofSize: 25); //anything like attributed string?
+        header.font = UIFont.boldSystemFont(ofSize: 25);
         header.textAlignment = .center
         return header
     }()
@@ -29,7 +30,7 @@ class OnboardingPasswordViewController: UIViewController {
     private let instruction: UILabel = {
         let instruction = UILabel()
         instruction.translatesAutoresizingMaskIntoConstraints = false
-        instruction.text = "Next, create your password"
+        instruction.text = "Enter your password"
         instruction.textColor = .white
         instruction.font = UIFont.boldSystemFont(ofSize: 16)
         instruction.textAlignment = .center
@@ -52,17 +53,17 @@ class OnboardingPasswordViewController: UIViewController {
         return passwordField
     }()
     
-    private let continueButton: UIButton = {
-        let continueButton = UIButton()
-        continueButton.translatesAutoresizingMaskIntoConstraints = false
-        continueButton.backgroundColor = .gray
-        continueButton.setTitle("Continue", for: .normal)
-        continueButton.setTitleColor(.black, for: .normal)
-        continueButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        continueButton.layer.cornerRadius = 20
-        continueButton.isEnabled = false
-        continueButton.addTarget(self, action: #selector(didTapContinueButton), for: .touchUpInside)
-        return continueButton
+    private let signInButton: UIButton = {
+        let signInButton = UIButton()
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.backgroundColor = .gray
+        signInButton.setTitle("Sign in", for: .normal)
+        signInButton.setTitleColor(.black, for: .normal)
+        signInButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        signInButton.layer.cornerRadius = 20
+        signInButton.isEnabled = false
+        signInButton.addTarget(self, action: #selector(didTapSignInButton), for: .touchUpInside)
+        return signInButton
     }()
     
     private func addConstraints() {
@@ -83,11 +84,11 @@ class OnboardingPasswordViewController: UIViewController {
                 passwordField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 
                 //continue button
-                continueButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
-                continueButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-                continueButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-                continueButton.heightAnchor.constraint(equalToConstant: view.safeAreaLayoutGuide.layoutFrame.height/15),
-                continueButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                signInButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
+                signInButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+                signInButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+                signInButton.heightAnchor.constraint(equalToConstant: view.safeAreaLayoutGuide.layoutFrame.height/15),
+                signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
             ])
         } else {
             // Fallback on earlier versions
@@ -102,7 +103,7 @@ class OnboardingPasswordViewController: UIViewController {
         view.addSubview(header)
         view.addSubview(instruction)
         view.addSubview(passwordField)
-        view.addSubview(continueButton)
+        view.addSubview(signInButton)
         
         addConstraints()
     }
@@ -115,34 +116,17 @@ class OnboardingPasswordViewController: UIViewController {
     @objc fileprivate func handleTextInputChange() {
         let usernameIsEntered = passwordField.text?.count ?? 0 > 0
         if (usernameIsEntered) {
-            continueButton.isEnabled = true
-            continueButton.backgroundColor = .white
+            signInButton.isEnabled = true
+            signInButton.backgroundColor = .white
         } else {
-            continueButton.isEnabled = false
-            continueButton.backgroundColor = .systemGray
+            signInButton.isEnabled = false
+            signInButton.backgroundColor = .systemGray
         }
     }
             
     
-    @objc func didTapContinueButton() {
-        Auth.auth().createUser(withEmail: newUser.email!, password: passwordField.text!) {
-            authResult, error in
-            if let error = error {
-                print("Failed to create user: \(error.localizedDescription)")
-            }
-            self.newUser.authID = authResult?.user.uid
-            print(self.newUser)
-            FirebaseDB.add(aNewUser: self.newUser) { success, error in
-                if let error = error {
-                    print("Failed to add to database: \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let successMessage = success else {return}
-                print("Successfully created user: \(successMessage)")
-            }
-            
-            Auth.auth().signIn(withEmail: self.newUser.email!, password: self.passwordField.text!) { [weak self] authResult, error in
+    @objc func didTapSignInButton() {
+        Auth.auth().signIn(withEmail: self.email, password: self.passwordField.text!) { [weak self] authResult, error in
                 guard self != nil else { return }   // what's the weak self for here? TODO: QUESTION
                 if let error = error {
                     print("Failed to sign in user: \(error.localizedDescription)")
@@ -154,8 +138,6 @@ class OnboardingPasswordViewController: UIViewController {
                 postingWall.modalTransitionStyle = .crossDissolve
                 self!.present(postingWall, animated: true)
             }
-        }
-
     }
     
     fileprivate func presentPopUp(with message: String) {

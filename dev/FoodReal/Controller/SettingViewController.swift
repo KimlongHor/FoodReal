@@ -33,6 +33,17 @@ struct Profile {
 
 class SettingViewController: UIViewController {
     
+    var currUser: User
+    
+    init(currUser: User) {
+        self.currUser = currUser
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var settingTableView: UITableView!
     
     private let signOutButton: UIButton = {
@@ -69,21 +80,21 @@ class SettingViewController: UIViewController {
     
     fileprivate func configure() {
         settings.append(Section(title: "", options: [
-            .profileCell(model: .init(profileImage: nil, username: "Kimlong Hor", userId: "kimlong.h", handle: {}))
+            .profileCell(model: .init(profileImage: nil, username: currUser.username ?? "---", userId: currUser.email ?? "...", handle: {self.navigateToProfileViewController()}))
         ]))
-        settings.append(Section(title: "FEATURES", options: [.settingCell(model: SettingsOption(title: "Memories", icon: UIImage(systemName: "calendar"), handle: {}))]))
+        settings.append(Section(title: "FEATURES", options: [.settingCell(model: SettingsOption(title: "Memories", icon: UIImage(systemName: "calendar"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
         
         settings.append(Section(title: "SETTINGS", options: [
             .settingCell(model: SettingsOption(title: "Notifications", icon: UIImage(named: "notification"), handle: {})),
-            .settingCell(model: SettingsOption(title: "Privacy", icon: UIImage(named: "privacy"), handle: {})),
-            .settingCell(model: SettingsOption(title: "Time Zone: Americas", icon: UIImage(named: "time-zone"), handle: {})),
-            .settingCell(model: SettingsOption(title: "Other", icon: UIImage(named: "other"), handle: {}))]))
+            .settingCell(model: SettingsOption(title: "Privacy", icon: UIImage(named: "privacy"), handle: {self.view.presentPopUp(with: "Coming soon")})),
+            .settingCell(model: SettingsOption(title: "Time Zone: Americas", icon: UIImage(named: "time-zone"), handle: {self.view.presentPopUp(with: "Coming soon")})),
+            .settingCell(model: SettingsOption(title: "Other", icon: UIImage(named: "other"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
         
         settings.append(Section(title: "ABOUT", options: [
-            .settingCell(model: SettingsOption(title: "Share FoodReal", icon: UIImage(named: "share"), handle: {})),
-            .settingCell(model: SettingsOption(title: "Rate FoodReal", icon: UIImage(named: "rate"), handle: {})),
-            .settingCell(model: SettingsOption(title: "Help", icon: UIImage(named: "help"), handle: {})),
-            .settingCell(model: SettingsOption(title: "About", icon: UIImage(named: "about"), handle: {}))]))
+            .settingCell(model: SettingsOption(title: "Share FoodReal", icon: UIImage(named: "share"), handle: {self.view.presentPopUp(with: "Coming soon")})),
+            .settingCell(model: SettingsOption(title: "Rate FoodReal", icon: UIImage(named: "rate"), handle: {self.view.presentPopUp(with: "Coming soon")})),
+            .settingCell(model: SettingsOption(title: "Help", icon: UIImage(named: "help"), handle: {self.view.presentPopUp(with: "Coming soon")})),
+            .settingCell(model: SettingsOption(title: "About", icon: UIImage(named: "about"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
     }
 
     fileprivate func setupView() {
@@ -107,6 +118,13 @@ class SettingViewController: UIViewController {
     @objc func didTapSignOutButton() {
         FirebaseDB.signOut()
         // SWITCH VIEW CONTROLLER MOCVED TO SIGNOUT FUNCTION IN DBCLASS
+    }
+    
+    fileprivate func navigateToProfileViewController() {
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileViewController", creator: { coder in
+            return ProfileViewController(coder: coder, currUser: self.currUser)
+        })
+        navigationController?.pushViewController(profileVC, animated: true)
     }
 }
 

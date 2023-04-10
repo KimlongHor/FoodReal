@@ -83,7 +83,7 @@ class PostingWallViewController: UIViewController {
                 }
                 
             case .denied, .notDetermined, .provisional, .ephemeral:
-                self.presentPopUp(with: "Please consider allowing notification to recieve the best experience")
+                self.view.presentPopUp(with: "Please consider allowing notification to recieve the best experience")
             @unknown default:
                 fatalError()
             }
@@ -185,7 +185,8 @@ class PostingWallViewController: UIViewController {
     }
     
     @objc func didTapProfileButton() {
-        let settingVC =  SettingViewController()
+        guard let currUser = currUser else {return}
+        let settingVC =  SettingViewController(currUser: currUser)
         navigationController?.pushViewController(settingVC, animated: true)
     }
     
@@ -201,46 +202,7 @@ class PostingWallViewController: UIViewController {
     }
     
     fileprivate func handleCameraForSimulator() {
-        presentPopUp(with: "The feature is not availble on simulators")
-    }
-    
-    fileprivate func presentPopUp(with message: String) {
-        DispatchQueue.main.async {
-            let savedLabel = UILabel()
-            savedLabel.text = message
-            savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
-            savedLabel.textColor = .white
-            savedLabel.numberOfLines = 0
-            savedLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
-            savedLabel.textAlignment = .center
-            savedLabel.createRoundCornerForLabel(cornerRadius: 15)
-            savedLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 50, height: 80)
-            savedLabel.center = self.view.center
-            
-            self.view.addSubview(savedLabel)
-            
-            savedLabel.layer.transform = CATransform3DMakeScale(0, 0, 0)
-            
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                
-                savedLabel.layer.transform = CATransform3DMakeScale(1, 1, 1)
-                
-            }, completion: { (completed) in
-                //completed
-                
-                UIView.animate(withDuration: 0.5, delay: 0.75, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                    
-                    savedLabel.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1)
-                    savedLabel.alpha = 0
-                    
-                }, completion: { (_) in
-                    
-                    savedLabel.removeFromSuperview()
-                    
-                })
-                
-            })
-        }
+        self.view.presentPopUp(with: "The feature is not availble on simulators")
     }
 }
 

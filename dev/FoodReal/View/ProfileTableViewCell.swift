@@ -23,8 +23,9 @@ class ProfileTableViewCell: UITableViewCell {
         profileImageView.createRoundCorner(cornerRadius: profileImageView.frame.height / 2)
         
         nameLabel.textColor = .white
+        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
         profileIdLabel.textColor = .white
-        profileIdLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        profileIdLabel.font = .systemFont(ofSize: 16, weight: .regular)
     }
     
     func setupView(with model: Profile) {

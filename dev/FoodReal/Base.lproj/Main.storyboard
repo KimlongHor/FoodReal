@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -105,21 +106,35 @@
                                             <constraint firstAttribute="width" constant="130" id="qX5-iE-737"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGj-5X-nN9">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qx-Hg-1rG">
                                         <rect key="frame" x="221.66666666666666" y="140" width="39.999999999999972" height="40"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UGj-5X-nN9">
+                                                <rect key="frame" x="5" y="5.9999999999999982" width="30" height="27.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="30" id="1pK-jX-PBW"/>
+                                                    <constraint firstAttribute="height" constant="30" id="d15-Qx-kqg"/>
+                                                </constraints>
+                                                <imageReference key="image" image="camera.fill" catalog="system" variableValue="1"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="40" id="1pK-jX-PBW"/>
-                                            <constraint firstAttribute="height" constant="40" id="d15-Qx-kqg"/>
+                                            <constraint firstItem="UGj-5X-nN9" firstAttribute="centerX" secondItem="3qx-Hg-1rG" secondAttribute="centerX" id="10e-fQ-MH9"/>
+                                            <constraint firstAttribute="width" constant="40" id="ReR-JD-obs"/>
+                                            <constraint firstItem="UGj-5X-nN9" firstAttribute="centerY" secondItem="3qx-Hg-1rG" secondAttribute="centerY" id="TLK-mq-Tup"/>
+                                            <constraint firstAttribute="height" constant="40" id="k8J-yW-dqZ"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="UGj-5X-nN9" firstAttribute="trailing" secondItem="B9g-3n-fdU" secondAttribute="trailing" id="50W-8d-je5"/>
                                     <constraint firstItem="B9g-3n-fdU" firstAttribute="centerY" secondItem="EI9-dC-zSM" secondAttribute="centerY" id="5dv-8H-74g"/>
+                                    <constraint firstItem="3qx-Hg-1rG" firstAttribute="trailing" secondItem="B9g-3n-fdU" secondAttribute="trailing" id="BA2-lK-458"/>
                                     <constraint firstAttribute="height" constant="230" id="N0N-S5-e47"/>
                                     <constraint firstItem="B9g-3n-fdU" firstAttribute="centerX" secondItem="EI9-dC-zSM" secondAttribute="centerX" id="TsT-8J-cYo"/>
-                                    <constraint firstItem="UGj-5X-nN9" firstAttribute="bottom" secondItem="B9g-3n-fdU" secondAttribute="bottom" id="ZMA-qf-8Vx"/>
+                                    <constraint firstItem="3qx-Hg-1rG" firstAttribute="bottom" secondItem="B9g-3n-fdU" secondAttribute="bottom" id="pIK-W8-LBi"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7H-mC-BXw">
@@ -271,6 +286,7 @@
                     </view>
                     <connections>
                         <outlet property="birthDateTextField" destination="Spi-pr-zEa" id="YUm-Ti-KIU"/>
+                        <outlet property="cameraContainerView" destination="3qx-Hg-1rG" id="GNO-Ak-YwH"/>
                         <outlet property="cameraImageView" destination="UGj-5X-nN9" id="dNb-jI-ZH3"/>
                         <outlet property="emailTextField" destination="apc-E5-aOT" id="tb8-hE-JTP"/>
                         <outlet property="fullNameTextField" destination="qYx-5f-s5Y" id="wdX-dZ-dqZ"/>
@@ -392,6 +408,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.fill" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

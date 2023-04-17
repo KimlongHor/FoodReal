@@ -104,23 +104,38 @@
                                                     <constraint firstAttribute="width" constant="100" id="tQ0-dW-wjA"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fi9-m6-m36">
-                                                <rect key="frame" x="252.33333333333334" y="347.33333333333331" width="66.666666666666657" height="56.666666666666686"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="heartWhiteBordered"/>
-                                                <connections>
-                                                    <action selector="likeButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="txJ-24-EcX"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="C9R-Cx-a0x">
+                                                <rect key="frame" x="251.66666666666666" y="374" width="57.333333333333343" height="35"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGA-fA-7Dg">
+                                                        <rect key="frame" x="0.0" y="7.3333333333333126" width="10.333333333333334" height="20.333333333333329"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fi9-m6-m36">
+                                                        <rect key="frame" x="22.333333333333343" y="0.0" width="35" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="BRe-C3-Wei"/>
+                                                            <constraint firstAttribute="width" constant="35" id="kry-xF-H9l"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="heartWhiteBordered"/>
+                                                        <connections>
+                                                            <action selector="likeButtonPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="txJ-24-EcX"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="0Df-o6-G41" firstAttribute="top" secondItem="CQK-TH-4z6" secondAttribute="top" id="451-C0-knw"/>
                                             <constraint firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" constant="10" id="Iml-Zm-WNq"/>
-                                            <constraint firstItem="Fi9-m6-m36" firstAttribute="bottom" secondItem="0Df-o6-G41" secondAttribute="bottom" constant="-20" id="Kdx-Ng-RD3"/>
+                                            <constraint firstItem="C9R-Cx-a0x" firstAttribute="bottom" secondItem="0Df-o6-G41" secondAttribute="bottom" constant="-15" id="Qgc-K8-EWX"/>
                                             <constraint firstItem="NcR-Ji-xyd" firstAttribute="top" secondItem="0Df-o6-G41" secondAttribute="top" constant="15" id="Wle-SY-HJ2"/>
+                                            <constraint firstItem="C9R-Cx-a0x" firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" constant="-10" id="fOh-nA-5iw"/>
                                             <constraint firstAttribute="bottom" secondItem="0Df-o6-G41" secondAttribute="bottom" constant="10" id="o3h-SO-3Dc"/>
-                                            <constraint firstItem="Fi9-m6-m36" firstAttribute="trailing" secondItem="0Df-o6-G41" secondAttribute="trailing" id="pHX-aw-5Pf"/>
                                             <constraint firstItem="NcR-Ji-xyd" firstAttribute="leading" secondItem="0Df-o6-G41" secondAttribute="leading" constant="15" id="smx-Nz-dX5"/>
                                             <constraint firstItem="0Df-o6-G41" firstAttribute="leading" secondItem="CQK-TH-4z6" secondAttribute="leading" constant="10" id="z6N-aA-MQ7"/>
                                         </constraints>
@@ -152,6 +167,7 @@
                 <outlet property="likeButton" destination="Fi9-m6-m36" id="1Xf-cZ-W0r"/>
                 <outlet property="moreButton" destination="psb-aG-34D" id="V0Z-m7-lze"/>
                 <outlet property="nameLabel" destination="Mfc-UO-BLG" id="AEw-ni-iG9"/>
+                <outlet property="numOfLikesLabel" destination="KGA-fA-7Dg" id="IjH-dk-rvb"/>
                 <outlet property="timeLabel" destination="63d-wg-az8" id="NFd-Vb-htW"/>
                 <outlet property="userImageView" destination="Txq-2M-IDb" id="5IN-zt-0Tb"/>
             </connections>

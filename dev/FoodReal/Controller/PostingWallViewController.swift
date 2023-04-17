@@ -34,7 +34,6 @@ class PostingWallViewController: UIViewController {
         fetchUser()
         setupAnimationViews()
         setupRefreshControl()
-        setupPostCollectionView()
         setupNavBar()
         setupNotification()
     }
@@ -54,6 +53,7 @@ class PostingWallViewController: UIViewController {
                 return
             }
             self.currUser = user
+            self.setupPostCollectionView()
         }
     }
     
@@ -83,7 +83,9 @@ class PostingWallViewController: UIViewController {
                 }
                 
             case .denied, .notDetermined, .provisional, .ephemeral:
-                self.view.presentPopUp(with: "Please consider allowing notification to recieve the best experience")
+                DispatchQueue.main.async {
+                    self.view.presentPopUp(with: "Please consider allowing notification to recieve the best experience")
+                }
             @unknown default:
                 fatalError()
             }
@@ -213,8 +215,9 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath as IndexPath) as! PostCollectionViewCell
-        if let meal = meals?[indexPath.row] {
-            cell.setupCellView(meal: meal)
+        if let meal = meals?[indexPath.row], let currUser = currUser {
+            cell.delegate = self
+            cell.setupCellView(index: indexPath.row, meal: meal, currUser: currUser)
         }
         return cell
     }
@@ -271,7 +274,12 @@ extension PostingWallViewController: CameraViewDelegate {
     }
 }
 
-// TODO: -Kim
-/*
- - Work on adding legit data to firestore (Currently, only front and back images are real in database)
- */
+extension PostingWallViewController: FeedDelegate {
+    func didPressLike(isLiked: Bool, index: Int) {
+        if isLiked {
+            meals![index].likes?.append((currUser?.uid)!)
+        } else {
+            meals![index].likes?.removeAll(where: {$0 == currUser?.uid})
+        }
+    }
+}

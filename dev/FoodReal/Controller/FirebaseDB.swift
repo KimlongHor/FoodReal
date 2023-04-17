@@ -128,8 +128,24 @@ class FirebaseDB {
         return
     }
     
-    static func addLike(to meal: Meal, likedUser uid: String) {
-        
+    static func addLike(to meal: Meal?, likedUser: User?, completion:@escaping (_ error: Error?) -> ()) {
+        guard let meal = meal, let likedUser = likedUser else {
+            print("Invalid meal and user")
+            return
+        }
+        db.collection(mealsRef).document(meal.id!).updateData(["likes": FieldValue.arrayUnion([likedUser.uid!])]) { error in
+            completion(error)
+        }
+    }
+    
+    static func removeLike(to meal: Meal?, likedUser: User?, completion:@escaping (_ error: Error?) -> ()) {
+        guard let meal = meal, let likedUser = likedUser else {
+            print("Invalid meal and user")
+            return
+        }
+        db.collection(mealsRef).document(meal.id!).updateData(["likes": FieldValue.arrayRemove([likedUser.uid!])]) { error in
+            completion(error)
+        }
     }
 }
 

@@ -128,16 +128,29 @@ class OnboardingPasswordViewController: UIViewController {
         Auth.auth().createUser(withEmail: newUser.email!, password: passwordField.text!) {
             authResult, error in
             if let error = error {
+                switch (error) {
+                case AuthErrorCode.invalidEmail:
+                    self.view.presentPopUp(with: "Invalid email address")
+                    break;
+                case AuthErrorCode.emailAlreadyInUse:
+                    self.view.presentPopUp(with: "Account already exists")
+                    break;
+                case AuthErrorCode.weakPassword:
+                    self.view.presentPopUp(with: "Password too weak, must be more than 6 characters")
+                    break;
+                default:
+                    self.view.presentPopUp(with: "Failed to create user")
+                }
                 print("Failed to create user: \(error.localizedDescription)")
+                return
             }
             self.newUser.authID = authResult?.user.uid
             print(self.newUser)
             FirebaseDB.add(aNewUser: self.newUser) { success, error in
                 if let error = error {
-                    print("Failed to add to database: \(error.localizedDescription)")
+                    print("Failed to add user profile to database: \(error.localizedDescription)")
                     return
                 }
-                
                 guard let successMessage = success else {return}
                 print("Successfully created user: \(successMessage)")
             }
@@ -145,8 +158,17 @@ class OnboardingPasswordViewController: UIViewController {
             Auth.auth().signIn(withEmail: self.newUser.email!, password: self.passwordField.text!) { [weak self] authResult, error in
                 guard self != nil else { return }   // what's the weak self for here? TODO: QUESTION
                 if let error = error {
+                    switch (error) {
+                    case AuthErrorCode.invalidEmail:
+                        self?.view.presentPopUp(with: "Invalid email address")
+                        break;
+                    case AuthErrorCode.wrongPassword:
+                        self?.view.presentPopUp(with: "Wrong email/password")
+                        break;
+                    default:
+                        self?.view.presentPopUp(with: "Failed to sign in user")
+                    }
                     print("Failed to sign in user: \(error.localizedDescription)")
-                    self?.presentPopUp(with: error.localizedDescription)
                     return
                 }
                 let postingWall = OnboardingNotificationViewController()
@@ -156,45 +178,6 @@ class OnboardingPasswordViewController: UIViewController {
             }
         }
 
-    }
-    
-    fileprivate func presentPopUp(with message: String) {
-        DispatchQueue.main.async {
-            let savedLabel = UILabel()
-            savedLabel.text = message
-            savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
-            savedLabel.textColor = .white
-            savedLabel.numberOfLines = 0
-            savedLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
-            savedLabel.textAlignment = .center
-            savedLabel.createRoundCornerForLabel(cornerRadius: 15)
-            savedLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 50, height: 80)
-            savedLabel.center = self.view.center
-            
-            self.view.addSubview(savedLabel)
-            
-            savedLabel.layer.transform = CATransform3DMakeScale(0, 0, 0)
-            
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                
-                savedLabel.layer.transform = CATransform3DMakeScale(1, 1, 1)
-                
-            }, completion: { (completed) in
-                //completed
-                
-                UIView.animate(withDuration: 0.5, delay: 0.75, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-                    
-                    savedLabel.layer.transform = CATransform3DMakeScale(0.1, 0.1, 0.1)
-                    savedLabel.alpha = 0
-                    
-                }, completion: { (_) in
-                    
-                    savedLabel.removeFromSuperview()
-                    
-                })
-                
-            })
-        }
     }
 
     required init?(coder: NSCoder) {

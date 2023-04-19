@@ -29,7 +29,7 @@ class OnboardingBirthdayViewController: UIViewController {
     private let instruction: UILabel = {
         let instruction = UILabel()
         instruction.translatesAutoresizingMaskIntoConstraints = false
-        instruction.text = "Hi <NAME>, when's your birthday?"
+        instruction.text = "Hi, when's your birthday?"
         instruction.textColor = .white
         instruction.font = UIFont.boldSystemFont(ofSize: 16)
         instruction.textAlignment = .center
@@ -88,6 +88,11 @@ class OnboardingBirthdayViewController: UIViewController {
         date.centerXToSuperview()
     }
     
+    private func setupInstruction() {
+        instruction.text = "Hi \(newUser.name ?? ""), when's your birthday?"
+        view.addSubview(instruction)
+    }
+    
     
     private let continueButton: UIButton = {
         let continueButton = UIButton()
@@ -112,10 +117,6 @@ class OnboardingBirthdayViewController: UIViewController {
                 instruction.topAnchor.constraint(equalTo: header.bottomAnchor, constant: view.safeAreaLayoutGuide.layoutFrame.height/25),
                 instruction.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 
-                //            // date field
-                //            dateField.topAnchor.constraint(equalTo: instruction.bottomAnchor, constant: view.safeAreaLayoutGuide.layoutFrame.height/40),
-                //            dateField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                
                 //continue button
                 continueButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -15),
                 continueButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -133,7 +134,7 @@ class OnboardingBirthdayViewController: UIViewController {
         view.backgroundColor = .black
         // Do any additional setup after loading the view.
         view.addSubview(header)
-        view.addSubview(instruction)
+        setupInstruction()
         setupDateField()
         view.addSubview(continueButton)
         

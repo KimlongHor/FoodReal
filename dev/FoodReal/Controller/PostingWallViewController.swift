@@ -167,6 +167,7 @@ class PostingWallViewController: UIViewController {
         
         // reset all the data to the original state
         meals?.removeAll()
+        meals = nil
         lastDocumentSnapshot = nil
         fetchingMore = true
         

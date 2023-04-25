@@ -219,7 +219,7 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         if let meals = meals, let currUser = currUser {
             cell.delegate = self
             cell.descriptionDelegate = self
-            cell.setupCellView(index: indexPath.row, meal: meal, currUser: currUser)
+            cell.setupCellView(index: indexPath.row, meals: meals, currUser: currUser)
         }
         return cell
     }

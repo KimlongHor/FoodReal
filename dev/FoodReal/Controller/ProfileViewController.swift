@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var birthDateTextField: UITextField!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     var currUser: User
     
     init?(coder: NSCoder, currUser: User) {
@@ -66,6 +68,8 @@ class ProfileViewController: UIViewController {
         usernameTextField.text = currUser.username
         emailTextField.text = currUser.email
         birthDateTextField.text = "\(currUser.birthMonth!)/\(currUser.birthDay!)/\( currUser.birthYear!)"
+        
+        saveButton.createRoundCorner(cornerRadius: 10)
     }
     
     fileprivate func setGestureRecognizerForProfileImageEditting() -> UITapGestureRecognizer {
@@ -115,6 +119,10 @@ class ProfileViewController: UIViewController {
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
     }
 }
 

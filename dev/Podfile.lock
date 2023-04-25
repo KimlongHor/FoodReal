@@ -620,11 +620,13 @@ PODS:
     - GoogleUtilities/Network (~> 7.8)
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseAppCheckInterop (10.7.0)
   - FirebaseAuth (10.5.0):
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - FirebaseAuthInterop (10.8.0)
   - FirebaseCore (10.4.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -657,6 +659,12 @@ PODS:
     - GoogleUtilities/UserDefaults (~> 7.8)
     - PromisesObjC (~> 2.1)
   - FirebaseSharedSwift (10.5.0)
+  - FirebaseStorage (10.5.0):
+    - FirebaseAppCheckInterop (~> 10.0)
+    - FirebaseAuthInterop (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseCoreExtension (~> 10.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - GoogleAppMeasurement (10.4.0):
     - GoogleAppMeasurement/AdIdSupport (= 10.4.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
@@ -763,21 +771,28 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
+  - SDWebImage (5.15.2):
+    - SDWebImage/Core (= 5.15.2)
+  - SDWebImage/Core (5.15.2)
 
 DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - FirebaseFirestore
   - FirebaseFirestoreSwift
+  - FirebaseStorage
   - LBTATools (~> 1.0)
   - lottie-ios
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
     - FirebaseAnalytics
+    - FirebaseAppCheckInterop
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -785,6 +800,7 @@ SPEC REPOS:
     - FirebaseFirestoreSwift
     - FirebaseInstallations
     - FirebaseSharedSwift
+    - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleUtilities
     - "gRPC-C++"
@@ -796,12 +812,15 @@ SPEC REPOS:
     - lottie-ios
     - nanopb
     - PromisesObjC
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   FirebaseAnalytics: 0be84b933ca3222bca03e8cccf020ad9b1c3c6ff
+  FirebaseAppCheckInterop: 8e907eea79958960a8bd2058e067f31e03a7914b
   FirebaseAuth: 1028326bcaa7a61391386e74b9078cc558ae14f1
+  FirebaseAuthInterop: 5ea2a68b83f5222f6d8688ffc3a49a9e92bb3eba
   FirebaseCore: b8697a177690b69b0dbce9d612b69b893be70469
   FirebaseCoreExtension: d9fa427f1ae1edccf2368ce5e8d567e4c1f0ebc8
   FirebaseCoreInternal: e301297f4c15a17489e48ed722d733b1578e0c02
@@ -809,6 +828,7 @@ SPEC CHECKSUMS:
   FirebaseFirestoreSwift: 3f63a09244cf0dc5e19072c13618446c686b05b6
   FirebaseInstallations: 36b38c733fd37e50857e5e8d74138648f466f18c
   FirebaseSharedSwift: 30289ed76ccb441067a2cd3472cc5b2f491b9d8f
+  FirebaseStorage: 858ba102341232ad8f4e3a457090858200716966
   GoogleAppMeasurement: 173fa22ce7d62c29332568e853b39b2525a0e584
   GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
   "gRPC-C++": 9675f953ace2b3de7c506039d77be1f2e77a8db2
@@ -820,7 +840,8 @@ SPEC CHECKSUMS:
   lottie-ios: d0954d3150061f662ed0adf96ef98d7421864c47
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  SDWebImage: 8ab87d4b3e5cc4927bd47f78db6ceb0b94442577
 
-PODFILE CHECKSUM: 2fe898e7a95b1a737050c8837159f30aebed4544
+PODFILE CHECKSUM: 7c0e471b0a76d1ddc1d72e16601ddfd27de59183
 
 COCOAPODS: 1.11.3

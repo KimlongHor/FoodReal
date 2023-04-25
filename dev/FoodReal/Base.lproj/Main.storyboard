@@ -239,10 +239,24 @@
                                             </textField>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="goV-Ck-hfG">
+                                        <rect key="frame" x="14" y="479" width="365" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="gnY-do-ncA"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="NCi-Vr-Ma3" eventType="touchUpInside" id="4dE-BQ-eul"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="goV-Ck-hfG" firstAttribute="leading" secondItem="A7H-mC-BXw" secondAttribute="leading" constant="14" id="4a6-ee-l0K"/>
                                     <constraint firstItem="1eU-sU-kyd" firstAttribute="leading" secondItem="A7H-mC-BXw" secondAttribute="leading" constant="20" id="6lC-Qa-vZl"/>
+                                    <constraint firstAttribute="trailing" secondItem="goV-Ck-hfG" secondAttribute="trailing" constant="14" id="8Lo-f8-aZh"/>
                                     <constraint firstItem="omL-Uz-Ntj" firstAttribute="top" secondItem="jbr-UY-yDy" secondAttribute="bottom" constant="15" id="Ahe-J4-Lho"/>
                                     <constraint firstAttribute="trailing" secondItem="Jd6-uk-4lq" secondAttribute="trailing" id="DVd-7G-n7z"/>
                                     <constraint firstItem="Jd6-uk-4lq" firstAttribute="top" secondItem="Px5-O9-3wz" secondAttribute="bottom" constant="15" id="EEM-6S-1nH"/>
@@ -259,6 +273,7 @@
                                     <constraint firstAttribute="trailing" secondItem="1eU-sU-kyd" secondAttribute="trailing" id="gyq-zG-Xgh"/>
                                     <constraint firstItem="omL-Uz-Ntj" firstAttribute="leading" secondItem="A7H-mC-BXw" secondAttribute="leading" constant="20" id="hmZ-db-mSs"/>
                                     <constraint firstItem="ZJI-15-glk" firstAttribute="top" secondItem="bUN-4b-1Tt" secondAttribute="bottom" constant="15" id="hsD-Mz-ehF"/>
+                                    <constraint firstAttribute="bottom" secondItem="goV-Ck-hfG" secondAttribute="bottom" id="ke3-m5-UdR"/>
                                     <constraint firstItem="Px5-O9-3wz" firstAttribute="leading" secondItem="A7H-mC-BXw" secondAttribute="leading" constant="20" id="o38-hp-xKX"/>
                                     <constraint firstItem="vPK-7P-AOn" firstAttribute="top" secondItem="A7H-mC-BXw" secondAttribute="top" id="ofg-33-yYU"/>
                                     <constraint firstItem="0Bo-lc-98D" firstAttribute="leading" secondItem="A7H-mC-BXw" secondAttribute="leading" constant="20" id="prF-gc-rtD"/>
@@ -291,6 +306,7 @@
                         <outlet property="emailTextField" destination="apc-E5-aOT" id="tb8-hE-JTP"/>
                         <outlet property="fullNameTextField" destination="qYx-5f-s5Y" id="wdX-dZ-dqZ"/>
                         <outlet property="profileImageView" destination="B9g-3n-fdU" id="fJn-KG-dT9"/>
+                        <outlet property="saveButton" destination="goV-Ck-hfG" id="OVR-0N-qTo"/>
                         <outlet property="usernameTextField" destination="JbF-Ld-Jfi" id="Ox5-zz-tSb"/>
                     </connections>
                 </viewController>
@@ -414,6 +430,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

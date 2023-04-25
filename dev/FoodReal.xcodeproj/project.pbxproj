@@ -34,11 +34,13 @@
 		D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148BFDE299303CB002BC463 /* UIViewExtensions.swift */; };
 		D1707C6029E33C2A002486AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1707C5F29E33C2A002486AA /* ProfileViewController.swift */; };
 		D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19391FA299C42FA00A17F20 /* StringExtensions.swift */; };
+		D19702E529F5EA1D00002602 /* uploading.json in Resources */ = {isa = PBXBuildFile; fileRef = D19702E429F5EA1D00002602 /* uploading.json */; };
 		D1ADD6FD29B86C0D00AD2B88 /* smiley.json in Resources */ = {isa = PBXBuildFile; fileRef = D1ADD6FC29B86C0D00AD2B88 /* smiley.json */; };
 		D1BA9C4829B7E45200970131 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = D1BA9C4729B7E45100970131 /* loading.json */; };
 		D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44492299D60270063206B /* PostCollectionViewCell.swift */; };
 		D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C44493299D60270063206B /* PostCollectionViewCell.xib */; };
 		D1C44497299D625C0063206B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44496299D625C0063206B /* SettingViewController.swift */; };
+		D1C50C6529F1E65D00F0F4BD /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */; };
 		D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */; };
 		D1FCDE0629DDE36F001810E3 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -75,11 +77,13 @@
 		D148BFDE299303CB002BC463 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D1707C5F29E33C2A002486AA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D19391FA299C42FA00A17F20 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		D19702E429F5EA1D00002602 /* uploading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploading.json; sourceTree = "<group>"; };
 		D1ADD6FC29B86C0D00AD2B88 /* smiley.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = smiley.json; sourceTree = "<group>"; };
 		D1BA9C4729B7E45100970131 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		D1C44492299D60270063206B /* PostCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1C44493299D60270063206B /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1C44496299D625C0063206B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +171,7 @@
 				D146E923298A415400845BA5 /* LaunchScreen.storyboard */,
 				D1ADD6FC29B86C0D00AD2B88 /* smiley.json */,
 				D1BA9C4729B7E45100970131 /* loading.json */,
+				D19702E429F5EA1D00002602 /* uploading.json */,
 				D148BFDD2993039D002BC463 /* Helpers */,
 				D146E926298A415400845BA5 /* Info.plist */,
 			);
@@ -179,6 +184,7 @@
 				D148BFDE299303CB002BC463 /* UIViewExtensions.swift */,
 				D19391FA299C42FA00A17F20 /* StringExtensions.swift */,
 				D117F09929E5F93D0057046C /* Alerts.swift */,
+				D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -283,6 +289,7 @@
 				D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */,
 				37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */,
 				D11B9C9F29D64B3500F4F851 /* SettingTableViewCell.xib in Resources */,
+				D19702E529F5EA1D00002602 /* uploading.json in Resources */,
 				D1BA9C4829B7E45200970131 /* loading.json in Resources */,
 				D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */,
 				D1FCDE0629DDE36F001810E3 /* ProfileTableViewCell.xib in Resources */,
@@ -359,6 +366,7 @@
 				D1707C6029E33C2A002486AA /* ProfileViewController.swift in Sources */,
 				371293982999AC3F0030E49F /* FirebaseDB.swift in Sources */,
 				D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */,
+				D1C50C6529F1E65D00F0F4BD /* UIImageViewExtensions.swift in Sources */,
 				375CA84D29B84A3100EE3106 /* User.swift in Sources */,
 				D117F09A29E5F93D0057046C /* Alerts.swift in Sources */,
 				37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */,

@@ -422,6 +422,21 @@
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
         </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="qBv-UD-YTd">
+            <objects>
+                <viewController storyboardIdentifier="PostDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pTR-jm-iLJ" customClass="PostDetailViewController" customModule="FoodReal" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zsY-oQ-yYC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="tgX-ti-6Oz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4K4-PU-4wQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2697" y="-665"/>
+        </scene>
     </scenes>
     <resources>
         <image name="camera.fill" catalog="system" width="128" height="93"/>

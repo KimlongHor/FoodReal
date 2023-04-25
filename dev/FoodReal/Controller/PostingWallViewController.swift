@@ -218,7 +218,8 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath as IndexPath) as! PostCollectionViewCell
         if let meals = meals, let currUser = currUser {
             cell.delegate = self
-            cell.setupCellView(index: indexPath.row, meals: meals, currUser: currUser)
+            cell.descriptionDelegate = self
+            cell.setupCellView(index: indexPath.row, meal: meal, currUser: currUser)
         }
         return cell
     }
@@ -290,5 +291,12 @@ extension PostingWallViewController: FeedDelegate {
         } else {
             meals![index].likes?.removeAll(where: {$0 == currUser?.uid})
         }
+    }
+}
+
+extension PostingWallViewController: DescriptionDelegate {
+    func didPressDescription(postContent: UIView) {
+        let postDetailsVC =  PostDetailViewController()
+        navigationController?.pushViewController(postDetailsVC, animated: true)
     }
 }

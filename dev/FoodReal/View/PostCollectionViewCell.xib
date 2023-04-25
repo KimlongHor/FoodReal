@@ -92,10 +92,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CQK-TH-4z6">
-                                        <rect key="frame" x="0.0" y="50" width="329" height="434"/>
+                                        <rect key="frame" x="0.0" y="50" width="329" height="379"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="food2" translatesAutoresizingMaskIntoConstraints="NO" id="0Df-o6-G41">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="424"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="369"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="NcR-Ji-xyd">
                                                 <rect key="frame" x="25" y="15" width="100" height="160"/>
@@ -105,7 +105,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="C9R-Cx-a0x">
-                                                <rect key="frame" x="251.66666666666666" y="374" width="57.333333333333343" height="35"/>
+                                                <rect key="frame" x="251.66666666666666" y="319" width="57.333333333333343" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KGA-fA-7Dg">
                                                         <rect key="frame" x="0.0" y="7.3333333333333126" width="10.333333333333334" height="20.333333333333329"/>
@@ -140,7 +140,23 @@
                                             <constraint firstItem="0Df-o6-G41" firstAttribute="leading" secondItem="CQK-TH-4z6" secondAttribute="leading" constant="10" id="z6N-aA-MQ7"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPJ-Lt-1vc">
+                                        <rect key="frame" x="0.0" y="434" width="329" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="d3t-YN-16U"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="didTapDescriptionButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="iTO-HE-rMy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KPJ-Lt-1vc" secondAttribute="trailing" id="9vD-Sw-IA0"/>
+                                    <constraint firstAttribute="bottom" secondItem="KPJ-Lt-1vc" secondAttribute="bottom" id="A1h-Sk-tUU"/>
+                                    <constraint firstItem="KPJ-Lt-1vc" firstAttribute="leading" secondItem="qWs-ay-UK2" secondAttribute="leading" id="shm-Og-CHf"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -168,6 +184,7 @@
                 <outlet property="moreButton" destination="psb-aG-34D" id="V0Z-m7-lze"/>
                 <outlet property="nameLabel" destination="Mfc-UO-BLG" id="AEw-ni-iG9"/>
                 <outlet property="numOfLikesLabel" destination="KGA-fA-7Dg" id="IjH-dk-rvb"/>
+                <outlet property="postContentView" destination="CQK-TH-4z6" id="HH4-9F-t0n"/>
                 <outlet property="timeLabel" destination="63d-wg-az8" id="NFd-Vb-htW"/>
                 <outlet property="userImageView" destination="Txq-2M-IDb" id="5IN-zt-0Tb"/>
             </connections>

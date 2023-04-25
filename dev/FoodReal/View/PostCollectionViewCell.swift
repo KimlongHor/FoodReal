@@ -11,6 +11,10 @@ protocol FeedDelegate {
     func didPressLike(isLiked: Bool, index: Int)
 }
 
+protocol DescriptionDelegate {
+    func didPressDescription(postContent: UIView)
+}
+
 class PostCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var timeLabel: UILabel!
@@ -21,11 +25,14 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var numOfLikesLabel: UILabel!
+    @IBOutlet weak var postContentView: UIView!
     
     var isOn: Bool = false
     var meal = Meal()
     var currUser = User()
     var delegate: FeedDelegate!
+    var descriptionDelegate: DescriptionDelegate!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -88,6 +95,10 @@ class PostCollectionViewCell: UICollectionViewCell {
                 self?.finishUpdatingLikesInDB(error)
             }
         }
+    }
+    
+    @IBAction func didTapDescriptionButton(_ sender: Any) {
+        descriptionDelegate.didPressDescription(postContent: postContentView)
     }
     
     private func finishUpdatingLikesInDB(_ error: Error?) {

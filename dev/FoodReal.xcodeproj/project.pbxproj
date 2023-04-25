@@ -17,6 +17,7 @@
 		375CA84829B847DB00EE3106 /* OnboardingPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */; };
 		375CA84D29B84A3100EE3106 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375CA84C29B84A3100EE3106 /* User.swift */; };
 		37A49579298CF52D00FD1F43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */; };
+		37BABCA629F85E820063FD08 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BABCA529F85E820063FD08 /* PostDetailViewController.swift */; };
 		37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D786D429E029FB004E7F42 /* SignInEmailViewController.swift */; };
 		37D786D729E029FB004E7F42 /* SignInPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D786D529E029FB004E7F42 /* SignInPasswordViewController.swift */; };
 		8B8EC74E022FCBA6028711EF /* Pods_FoodReal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */; };
@@ -55,6 +56,7 @@
 		375CA84229B847DB00EE3106 /* OnboardingPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPasswordViewController.swift; sourceTree = "<group>"; };
 		375CA84C29B84A3100EE3106 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		37A49578298CF52C00FD1F43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		37BABCA529F85E820063FD08 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		37D786D429E029FB004E7F42 /* SignInEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInEmailViewController.swift; sourceTree = "<group>"; };
 		37D786D529E029FB004E7F42 /* SignInPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInPasswordViewController.swift; sourceTree = "<group>"; };
 		66CCEBEB105920764FE55897 /* Pods_FoodReal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodReal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 				D1C44496299D625C0063206B /* SettingViewController.swift */,
 				D1169DDC299EDC8C004CD72B /* CameraViewController.swift */,
 				D1707C5F29E33C2A002486AA /* ProfileViewController.swift */,
+				37BABCA529F85E820063FD08 /* PostDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				D117F09A29E5F93D0057046C /* Alerts.swift in Sources */,
 				37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */,
 				3712939A2999BDC60030E49F /* Meal.swift in Sources */,
+				37BABCA629F85E820063FD08 /* PostDetailViewController.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,
 				375CA84629B847DB00EE3106 /* OnboardingEmailViewController.swift in Sources */,
 			);

@@ -142,10 +142,9 @@ class SignInPasswordViewController: UIViewController {
                     print("Failed to sign in user: \(error.localizedDescription)")
                     return
                 }
-                let postingWall = OnboardingNotificationViewController()
-                postingWall.modalPresentationStyle = .fullScreen
-                postingWall.modalTransitionStyle = .crossDissolve
-                self!.present(postingWall, animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainNavigationController = storyboard.instantiateViewController(withIdentifier: "MainNavigationController")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainNavigationController)
             }
     }
 

@@ -6,9 +6,14 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol FeedDelegate {
     func didPressLike(isLiked: Bool, index: Int)
+}
+
+protocol DescriptionDelegate {
+    func didPressDescription(postContent: UIView)
 }
 
 class PostCollectionViewCell: UICollectionViewCell {
@@ -21,11 +26,15 @@ class PostCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var numOfLikesLabel: UILabel!
+    @IBOutlet weak var postContentView: UIView!
     
     var isOn: Bool = false
-    var meal = Meal()
+    var meals = [Meal]()
+    var index = 0
     var currUser = User()
     var delegate: FeedDelegate!
+    var descriptionDelegate: DescriptionDelegate!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,26 +62,38 @@ class PostCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setupCellView(index: Int, meal: Meal, currUser: User) {
+    func setupCellView(index: Int, meals: [Meal], currUser: User) {
         likeButton.tag = index
         self.currUser = currUser
-        self.meal = meal
-        frontImageView.image = UIImage(data: meal.frontImage ?? Data())
-        backImageView.image = UIImage(data: meal.backImage ?? Data())
-        timeLabel.text = meal.dateTime?.description
-        nameLabel.text = meal.authorUsername
+        self.meals = meals
+        self.index = index
         
-        guard let likeUsers = meal.likes else {return}
-        for likeUser in likeUsers {
-            if currUser.uid! == likeUser {
+        if let url = URL(string: meals[index].frontImageURL ?? "") {
+            self.frontImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
+        } else {
+            self.frontImageView.image = UIImage(named: "food1")
+        }
+        
+        if let url = URL(string: meals[index].backImageURL ?? "") {
+            self.backImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
+        } else {
+            self.backImageView.image = UIImage(named: "food1")
+        }
+        
+        timeLabel.text = meals[index].dateTime?.description
+        nameLabel.text = meals[index].authorUsername
+        
+        if let likeUsers = meals[index].likes {
+            if likeUsers.contains(currUser.uid!) {
                 isOn = true
-                break
             } else {
                 isOn = false
             }
+            numOfLikesLabel.text = "\(likeUsers.count)"
+        } else {
+            isOn = false
+            numOfLikesLabel.text = "0"
         }
-        
-        numOfLikesLabel.text = "\(likeUsers.count)"
         setButtonBackGround(view: likeButton, on: UIImage(named: "heartRed") ?? UIImage(), off: UIImage(named: "heartWhiteBordered") ?? UIImage(), onOffStatus: isOn)
     }
     
@@ -80,14 +101,18 @@ class PostCollectionViewCell: UICollectionViewCell {
         isOn.toggle()
         setButtonBackGround(view: sender, on: UIImage(named: "heartRed") ?? UIImage(), off: UIImage(named: "heartWhiteBordered") ?? UIImage(), onOffStatus: isOn)
         if (isOn) {
-            FirebaseDB.addLike(to: meal, likedUser: currUser) { [weak self] error in
+            FirebaseDB.addLike(to: meals[index], likedUser: currUser) { [weak self] error in
                 self?.finishUpdatingLikesInDB(error)
             }
         } else {
-            FirebaseDB.removeLike(to: meal, likedUser: currUser) { [weak self] error in
+            FirebaseDB.removeLike(to: meals[index], likedUser: currUser) { [weak self] error in
                 self?.finishUpdatingLikesInDB(error)
             }
         }
+    }
+    
+    @IBAction func didTapDescriptionButton(_ sender: Any) {
+        descriptionDelegate.didPressDescription(postContent: postContentView)
     }
     
     private func finishUpdatingLikesInDB(_ error: Error?) {
@@ -95,8 +120,7 @@ class PostCollectionViewCell: UICollectionViewCell {
             print("Failed appending to likeUser to the db")
             return
         }
-        
+        print("isOn: \(isOn)")
         delegate.didPressLike(isLiked: isOn, index: likeButton.tag)
-
     }
 }

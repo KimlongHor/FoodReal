@@ -15,8 +15,8 @@ struct Meal : Codable {
     @ServerTimestamp var dateTime: Date?
     var description: String?
     var likes: [String]?
-    var frontImage: Data?
-    var backImage: Data?
+    var frontImageURL: String?
+    var backImageURL: String?
     var privateData: PrivateData?
 }
 

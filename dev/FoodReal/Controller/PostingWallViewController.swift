@@ -216,9 +216,10 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCollectionViewCell", for: indexPath as IndexPath) as! PostCollectionViewCell
-        if let meal = meals?[indexPath.row], let currUser = currUser {
+        if let meals = meals, let currUser = currUser {
             cell.delegate = self
-            cell.setupCellView(index: indexPath.row, meal: meal, currUser: currUser)
+            cell.descriptionDelegate = self
+            cell.setupCellView(index: indexPath.row, meals: meals, currUser: currUser)
         }
         return cell
     }
@@ -264,6 +265,11 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
 extension PostingWallViewController: CameraViewDelegate {
     func didPost() {
         animationView.isHidden = false
+        
+        meals?.removeAll()
+        meals = nil
+        lastDocumentSnapshot = nil
+        
         FirebaseDB.getData(lastDocSnapShot: nil) { meals, lastDoc, error in
             if let error = error {
                 print("Failed fetching data \(error.localizedDescription)")
@@ -278,9 +284,19 @@ extension PostingWallViewController: CameraViewDelegate {
 extension PostingWallViewController: FeedDelegate {
     func didPressLike(isLiked: Bool, index: Int) {
         if isLiked {
+            if meals![index].likes == nil {
+                meals![index].likes = [String]()
+            }
             meals![index].likes?.append((currUser?.uid)!)
         } else {
             meals![index].likes?.removeAll(where: {$0 == currUser?.uid})
         }
+    }
+}
+
+extension PostingWallViewController: DescriptionDelegate {
+    func didPressDescription(postContent: UIView) {
+        let postDetailsVC =  PostDetailViewController()
+        navigationController?.pushViewController(postDetailsVC, animated: true)
     }
 }

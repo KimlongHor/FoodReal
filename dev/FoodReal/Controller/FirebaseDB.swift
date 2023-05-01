@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 class FirebaseDB {
     static let db = Firestore.firestore()
@@ -145,6 +146,27 @@ class FirebaseDB {
         }
         db.collection(mealsRef).document(meal.id!).updateData(["likes": FieldValue.arrayRemove([likedUser.uid!])]) { error in
             completion(error)
+        }
+    }
+    
+    static func saveImageToFirebase(imageView: UIImageView, completion: @escaping (_ url: String)->()) {
+        let filename = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: "/images/\(filename)")
+        
+        ref.putData(imageView.image?.jpegData(compressionQuality: 0.3) ?? Data(), metadata: nil) { (_, error) in
+            if let error = error {
+                print("cannot save image to Firebase", error)
+                return
+            }
+            print("finish upload of image")
+            ref.downloadURL(completion: { (url, error) in
+                if let error = error {
+                    print("cannot get url of image", error)
+                    return
+                }
+                let imageURL = url?.absoluteString ?? ""
+                completion(imageURL)
+            })
         }
     }
 }

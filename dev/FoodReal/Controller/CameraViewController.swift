@@ -9,6 +9,7 @@ import LBTATools
 import UIKit
 import AVFoundation
 import FirebaseAuth
+import Lottie
 
 protocol CameraViewDelegate {
     func didPost()
@@ -29,14 +30,17 @@ class CameraViewController: UIViewController {
     var frontInput: AVCaptureInput?
     var backImage: UIImage?
     var frontImage: UIImage?
-    var frontData: Data?
-    var backData: Data?
+    //var frontData: Data?
+    //var backData: Data?
     
     var isBothImageCaptured = false
     var backCameraOn = true
     var previewContainerView: UIView?
     
     var delegate: CameraViewDelegate?
+    
+    var uploadingView: LottieAnimationView?
+    var animationView = UIView(backgroundColor: .black)
     
     private let shutterButton: UIButton = {
         let button = UIButton()
@@ -89,11 +93,30 @@ class CameraViewController: UIViewController {
         setupView()
     }
     
+    func setupUploadingView() {
+        let uploadingLabel = UILabel(text: "Uploading images...", font: .systemFont(ofSize: 10, weight: .semibold), textColor: .white, textAlignment: .center, numberOfLines: 0)
+        
+        uploadingView = .init(name: "uploading")
+        uploadingView?.loopMode = .loop
+        uploadingView?.play()
+        uploadingView?.contentMode = .scaleAspectFit
+        uploadingView?.backgroundColor = .black
+        uploadingView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        animationView.addSubview(uploadingView ?? UIView(backgroundColor: .black))
+        uploadingView?.anchor(top: animationView.topAnchor, leading: animationView.leadingAnchor, bottom: animationView.bottomAnchor, trailing: animationView.trailingAnchor, padding: .init(top: 150, left: 150, bottom: 150, right: 150))
+
+        animationView.addSubview(uploadingLabel)
+        uploadingLabel.anchor(top: nil, leading: animationView.leadingAnchor, bottom: animationView.bottomAnchor, trailing: animationView.trailingAnchor, padding: .init(top: 0, left: 150, bottom: 150, right: 150))
+
+        view.addSubview(animationView)
+        animationView.fillSuperview()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         previewLayer.frame = previewRoundedView.layer.bounds
         previewRoundedView.layer.addSublayer(previewLayer)
-        //shutterButton.center = CGPoint(x: view.frame.size.width/2, y: view.frame.size.height - 100)
     }
     
     fileprivate func checkCameraPermission() {
@@ -229,7 +252,7 @@ class CameraViewController: UIViewController {
         session?.commitConfiguration()
         
         // Wait for 0.1 second for the front camera to be ready to capture
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             completion()
         }
     }
@@ -246,15 +269,13 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         
         guard let backImage = backImage else {
             backImage = image
-            backData = data  //<----
             return
         }
         
         frontImage = image
-        frontData = data  //<----
         isBothImageCaptured = true
         
-        let meal = Meal(authorUsername: currUser.username,frontImage: frontData ?? data, backImage: backData ?? data, privateData: PrivateData(authorUserID: currUser.uid)) //<---- TODO: add profile picture later
+        let meal = Meal(authorUsername: currUser.username, privateData: PrivateData(authorUserID: currUser.uid)) //<---- TODO: add profile picture later
         
         // display captured images
         let containerView = PreviewPhotoContainerView()

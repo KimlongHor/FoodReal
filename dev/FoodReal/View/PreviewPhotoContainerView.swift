@@ -46,20 +46,39 @@ class PreviewPhotoContainerView: UIView {
     }()
     
     @objc fileprivate func handlePost() {
-        guard let meal = meal else {return}
-        FirebaseDB.add(aPublicMeal: meal) {[weak self] success, error in
-            if let error = error {
-                print("Failed to add to database: \(error.localizedDescription)")
-                return
+        let cameraViewController = self.parentViewController as? CameraViewController
+        cameraViewController?.setupUploadingView()
+        
+        saveFrontAndBackImages() {
+            guard let meal = self.meal else {return}
+            FirebaseDB.add(aPublicMeal: meal) {[weak self] success, error in
+                if let error = error {
+                    print("Failed to add to database: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let successMessage = success else {return}
+                print(successMessage)
+                
+                cameraViewController?.delegate?.didPost()
+                cameraViewController?.uploadingView?.stop()
+                cameraViewController?.navigationController?.popToRootViewController(animated: true)
             }
-            
-            guard let successMessage = success else {return}
-            print(successMessage)
-            let cameraViewController = self?.parentViewController as? CameraViewController
-            cameraViewController?.delegate?.didPost()
-            cameraViewController?.navigationController?.popToRootViewController(animated: true)
-            
         }
+    }
+    
+    fileprivate func saveFrontAndBackImages(completion: @escaping (()->())) {
+        FirebaseDB.saveImageToFirebase(imageView: frontImageView) { url in
+            let frontURL = url
+            FirebaseDB.saveImageToFirebase(imageView: self.backImageView) { url in
+                let backURL = url
+                self.meal?.frontImageURL = frontURL
+                self.meal?.backImageURL = backURL
+                completion()
+            }
+        }
+        
+        
     }
     
     override init(frame: CGRect) {

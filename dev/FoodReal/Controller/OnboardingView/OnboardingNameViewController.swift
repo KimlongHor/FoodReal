@@ -36,7 +36,11 @@ class OnboardingNameViewController: UIViewController {
         nameField.textColor = .white
         nameField.font = UIFont.boldSystemFont(ofSize: 40)
         nameField.textAlignment = .center
-        nameField.placeholder = "Your name"
+//        nameField.placeholder = "Your name"
+        nameField.attributedPlaceholder = NSAttributedString(
+            string: "Your name",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         nameField.adjustsFontSizeToFitWidth = true
         nameField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         nameField.autocorrectionType = .no

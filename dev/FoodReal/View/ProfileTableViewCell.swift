@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProfileTableViewCell: UITableViewCell {
     
@@ -21,6 +22,7 @@ class ProfileTableViewCell: UITableViewCell {
     fileprivate func setupUI() {
         profileImageView.backgroundColor = .orange
         profileImageView.createRoundCorner(cornerRadius: profileImageView.frame.height / 2)
+        profileImageView.contentMode = .scaleAspectFill
         
         nameLabel.textColor = .white
         nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
@@ -31,5 +33,9 @@ class ProfileTableViewCell: UITableViewCell {
     func setupView(with model: Profile) {
         nameLabel.text = model.username
         profileIdLabel.text = model.userId
+        
+        if let url = URL(string: model.profileImageURL ?? "") {
+            profileImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
+        }
     }
 }

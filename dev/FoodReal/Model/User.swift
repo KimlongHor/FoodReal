@@ -17,4 +17,5 @@ struct User : Codable {
     var birthYear: String?
     var birthMonth: String?
     var birthDay: String?
+    var profileImageURL: String?
 }

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol SettingViewDelegate {
+    func didUpdatingUserInfo(updatedUser: User)
+}
+
 struct Section {
     let title: String
     let options: [SettingsOptionType]
@@ -25,7 +29,7 @@ struct SettingsOption {
 
 // Might not use this struct later since we can use User struct
 struct Profile {
-    let profileImage: UIImage?
+    let profileImageURL: String?
     let username: String
     let userId: String
     let handle: (() -> Void)
@@ -34,6 +38,7 @@ struct Profile {
 class SettingViewController: UIViewController {
     
     var currUser: User
+    var delegate: SettingViewDelegate?
     
     init(currUser: User) {
         self.currUser = currUser
@@ -80,7 +85,7 @@ class SettingViewController: UIViewController {
     
     fileprivate func configure() {
         settings.append(Section(title: "", options: [
-            .profileCell(model: .init(profileImage: nil, username: currUser.username ?? "---", userId: currUser.email ?? "...", handle: {self.navigateToProfileViewController()}))
+            .profileCell(model: .init(profileImageURL: currUser.profileImageURL, username: currUser.username ?? "---", userId: currUser.email ?? "...", handle: {self.navigateToProfileViewController()}))
         ]))
         settings.append(Section(title: "FEATURES", options: [.settingCell(model: SettingsOption(title: "Memories", icon: UIImage(systemName: "calendar"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
         
@@ -124,6 +129,7 @@ class SettingViewController: UIViewController {
         let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileViewController", creator: { coder in
             return ProfileViewController(coder: coder, currUser: self.currUser)
         })
+        profileVC.delegate = self
         navigationController?.pushViewController(profileVC, animated: true)
     }
 }
@@ -187,5 +193,17 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             return 25
         }
+    }
+}
+
+extension SettingViewController: ProfileViewDelegate {
+    func didFinishUpdatingUserProfile(updatedCurrUser: User) {
+        currUser = updatedCurrUser
+        settings.removeAll()
+        configure()
+        DispatchQueue.main.async {
+            self.settingTableView.reloadData()
+        }
+        delegate?.didUpdatingUserInfo(updatedUser: updatedCurrUser)
     }
 }

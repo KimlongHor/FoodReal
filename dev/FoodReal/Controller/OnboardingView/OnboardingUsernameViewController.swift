@@ -42,8 +42,10 @@ class OnboardingUsernameViewController: UIViewController {
         usernameField.textColor = .white
         usernameField.font = UIFont.boldSystemFont(ofSize: 40)
         usernameField.textAlignment = .center
-//        usernameField.backgroundColor = .systemPink
-        usernameField.placeholder = "Your username"
+        usernameField.attributedPlaceholder = NSAttributedString(
+            string: "Your username",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         usernameField.adjustsFontSizeToFitWidth = true
         usernameField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         usernameField.autocorrectionType = .no

@@ -129,6 +129,30 @@ class FirebaseDB {
         return
     }
     
+    static func updateAuthorInfoOnMeals(authID: String, authProfileImageURL: String, authUsername: String, completion: @escaping((String?, Error?) -> ())) {
+        let query = db.collection(mealsRef).whereField("privateData.authorUserID", isEqualTo: authID)
+        query.getDocuments { snapshot, error in
+            if let error = error {
+                completion(nil, error)
+            } else if snapshot!.isEmpty {
+                completion("This user does not have any posts. No document gets updated", nil)
+            } else {
+                do {
+                    for document in snapshot!.documents {
+                        db.collection(mealsRef).document(document.documentID).updateData([
+                            "authorProfilePicture" : authProfileImageURL,
+                            "authorUsername" : authUsername
+                        ])
+                    }
+                    completion("Finished uploading user images in meal documents", nil)
+                } catch {
+                    print("Error occurred while loading document from snapshot - updateAuthoInfoOnMeals func")
+                    completion(nil, nil)
+                }
+            }
+        }
+    }
+    
     static func addLike(to meal: Meal?, likedUser: User?, completion:@escaping (_ error: Error?) -> ()) {
         guard let meal = meal, let likedUser = likedUser else {
             print("Invalid meal and user")
@@ -167,6 +191,23 @@ class FirebaseDB {
                 let imageURL = url?.absoluteString ?? ""
                 completion(imageURL)
             })
+        }
+    }
+    
+    static func updateUserProfile(user: User?, completion:@escaping (_ error: Error?) -> ()) {
+        guard let user = user else {
+            print("Invalid user")
+            return
+        }
+        
+        guard let name = user.name, let username = user.username else {return}
+        
+        db.collection(usersRef).document(user.uid!).updateData([
+            "profileImageURL" : user.profileImageURL ?? "",
+            "name" : name,
+            "username" : username
+        ]) { error in
+            completion(error)
         }
     }
 }

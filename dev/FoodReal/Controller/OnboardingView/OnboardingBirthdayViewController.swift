@@ -41,8 +41,10 @@ class OnboardingBirthdayViewController: UIViewController {
         month.textColor = .white
         month.font = UIFont.boldSystemFont(ofSize: 40)
         month.textAlignment = .left
-//        month.backgroundColor = .green
-        month.placeholder = "MM"
+        month.attributedPlaceholder = NSAttributedString(
+            string: "MM",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         month.contentMode = .scaleAspectFit
         month.keyboardType = .decimalPad
         month.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -54,8 +56,10 @@ class OnboardingBirthdayViewController: UIViewController {
         day.textColor = .white
         day.font = UIFont.boldSystemFont(ofSize: 40)
         day.textAlignment = .left
-//        day.backgroundColor = .systemBlue
-        day.placeholder = "DD"
+        day.attributedPlaceholder = NSAttributedString(
+            string: "DD",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         day.contentMode = .scaleAspectFit
         day.keyboardType = .decimalPad
         day.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
@@ -67,8 +71,10 @@ class OnboardingBirthdayViewController: UIViewController {
         year.textColor = .white
         year.font = UIFont.boldSystemFont(ofSize: 40)
         year.textAlignment = .left
-//        year.backgroundColor = .green
-        year.placeholder = "YYYY"
+        year.attributedPlaceholder = NSAttributedString(
+            string: "YYYY",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         year.contentMode = .scaleAspectFit
         year.keyboardType = .decimalPad
         year.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)

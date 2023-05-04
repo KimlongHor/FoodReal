@@ -43,8 +43,10 @@ class SignInPasswordViewController: UIViewController {
         passwordField.textColor = .white
         passwordField.font = UIFont.boldSystemFont(ofSize: 40)
         passwordField.textAlignment = .center
-//        passwordField.backgroundColor = .systemPink
-        passwordField.placeholder = "Your password"
+        passwordField.attributedPlaceholder = NSAttributedString(
+            string: "Your password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         passwordField.adjustsFontSizeToFitWidth = true
         passwordField.isSecureTextEntry = true
         passwordField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)

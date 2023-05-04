@@ -9,6 +9,7 @@ import FirebaseCore
 import FirebaseFirestore
 import Lottie
 import FirebaseAuth
+import SDWebImage
 
 class PostingWallViewController: UIViewController {
     
@@ -190,6 +191,7 @@ class PostingWallViewController: UIViewController {
     @objc func didTapProfileButton() {
         guard let currUser = currUser else {return}
         let settingVC =  SettingViewController(currUser: currUser)
+        settingVC.delegate = self
         navigationController?.pushViewController(settingVC, animated: true)
     }
     
@@ -298,5 +300,26 @@ extension PostingWallViewController: DescriptionDelegate {
     func didPressDescription(postContent: UIView) {
         let postDetailsVC =  PostDetailViewController()
         navigationController?.pushViewController(postDetailsVC, animated: true)
+    }
+}
+
+extension PostingWallViewController: SettingViewDelegate {
+    func didUpdatingUserInfo(updatedUser: User) {
+        currUser = updatedUser
+        
+        animationView.isHidden = false
+        
+        meals?.removeAll()
+        meals = nil
+        lastDocumentSnapshot = nil
+        
+        FirebaseDB.getData(lastDocSnapShot: nil) { meals, lastDoc, error in
+            if let error = error {
+                print("Failed fetching data \(error.localizedDescription)")
+                return
+            }
+            self.lastDocumentSnapshot = lastDoc
+            self.meals = meals
+        }
     }
 }

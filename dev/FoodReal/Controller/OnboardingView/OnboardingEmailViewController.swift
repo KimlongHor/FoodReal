@@ -42,8 +42,10 @@ class OnboardingEmailViewController: UIViewController {
         emailField.textColor = .white
         emailField.font = UIFont.boldSystemFont(ofSize: 40)
         emailField.textAlignment = .center
-//        emailField.backgroundColor = .systemPink
-        emailField.placeholder = "Your email"
+        emailField.attributedPlaceholder = NSAttributedString(
+            string: "Your email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+        )
         emailField.adjustsFontSizeToFitWidth = true
         emailField.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         emailField.autocorrectionType = .no

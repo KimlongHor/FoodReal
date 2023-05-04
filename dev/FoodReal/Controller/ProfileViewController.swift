@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import SDWebImage
+
+protocol ProfileViewDelegate {
+    func didFinishUpdatingUserProfile(updatedCurrUser: User)
+}
 
 enum ActionOption: Int {
     case PhotoLibrary = 0, Camera, Cancel
@@ -24,7 +29,9 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var saveButton: UIButton!
     
+    var didChangeProfileImage = false
     var currUser: User
+    var delegate: ProfileViewDelegate?
     
     init?(coder: NSCoder, currUser: User) {
         self.currUser = currUser
@@ -47,6 +54,10 @@ class ProfileViewController: UIViewController {
         profileImageView.isUserInteractionEnabled = true
         profileImageView.addGestureRecognizer(setGestureRecognizerForProfileImageEditting())
         
+        if let url = URL(string: currUser.profileImageURL ?? "") {
+            profileImageView.sd_setImage(with: url, placeholderImage: nil, options: .highPriority)
+        }
+        
         cameraImageView.backgroundColor = .white
         cameraImageView.createRoundCorner(cornerRadius: cameraImageView.frame.height / 2)
         cameraContainerView.createRoundCorner(cornerRadius: cameraContainerView.frame.height / 2)
@@ -63,13 +74,17 @@ class ProfileViewController: UIViewController {
         emailTextField.textColor = .white
         birthDateTextField.backgroundColor = .black
         birthDateTextField.textColor = .white
+        birthDateTextField.isUserInteractionEnabled = false
         
-        fullNameTextField.text = currUser.username
+        fullNameTextField.text = currUser.name
         usernameTextField.text = currUser.username
         emailTextField.text = currUser.email
+        emailTextField.isUserInteractionEnabled = false
         birthDateTextField.text = "\(currUser.birthMonth!)/\(currUser.birthDay!)/\( currUser.birthYear!)"
         
         saveButton.createRoundCorner(cornerRadius: 10)
+        saveButton.setTitle("Save", for: .normal)
+        saveButton.setTitleColor(.white, for: .normal)
     }
     
     fileprivate func setGestureRecognizerForProfileImageEditting() -> UITapGestureRecognizer {
@@ -122,7 +137,62 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        if (isEmpty(textField: fullNameTextField)) {
+            view.presentPopUp(with: "Invalid full name")
+            return
+        } else if (isEmpty(textField: usernameTextField)) {
+            view.presentPopUp(with: "Invalid user name")
+            return
+        }
         
+        self.currUser.name = self.fullNameTextField.text
+        self.currUser.username = self.usernameTextField.text
+        
+        if (didChangeProfileImage) {
+            FirebaseDB.saveImageToFirebase(imageView: profileImageView) { url in
+                self.currUser.profileImageURL = url
+                
+                FirebaseDB.updateUserProfile(user: self.currUser) { error in
+                    if let error = error {
+                        print("Failed to update user \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    FirebaseDB.updateAuthorInfoOnMeals(authID: self.currUser.authID ?? "", authProfileImageURL: url, authUsername: self.currUser.username ?? "") { success, error in
+                        if let error = error {
+                            print("Failed to update authorInfo in meal documents \(error.localizedDescription)")
+                            return
+                        }
+                        self.delegate?.didFinishUpdatingUserProfile(updatedCurrUser: self.currUser)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        } else {
+            FirebaseDB.updateUserProfile(user: currUser) { error in
+                if let error = error {
+                    print("Failed to update user \(error.localizedDescription)")
+                }
+                
+                FirebaseDB.updateAuthorInfoOnMeals(authID: self.currUser.authID ?? "", authProfileImageURL: self.currUser.profileImageURL ?? "", authUsername: self.currUser.username ?? "") { success, error in
+                    if let error = error {
+                        print("Failed to update authorInfo in meal documents \(error.localizedDescription)")
+                        return
+                    }
+                    self.delegate?.didFinishUpdatingUserProfile(updatedCurrUser: self.currUser)
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+    }
+    
+    fileprivate func isEmpty(textField: UITextField) -> Bool {
+        guard let text = textField.text else {return true}
+        if text.isEmpty {
+            return true
+        } else {
+            return false
+        }
     }
 }
 
@@ -131,6 +201,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
         print("I am here")
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profileImageView.image = image
+            didChangeProfileImage = true
         }
         dismiss(animated:true, completion: nil)
     }

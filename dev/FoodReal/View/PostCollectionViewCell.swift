@@ -80,6 +80,12 @@ class PostCollectionViewCell: UICollectionViewCell {
             self.backImageView.image = UIImage(named: "food1")
         }
         
+        if let url = URL(string: meals[index].authorProfilePicture ?? "") {
+            self.userImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
+        } else {
+            self.userImageView.image = UIImage(named: "cat")
+        }
+        
         timeLabel.text = meals[index].dateTime?.description
         nameLabel.text = meals[index].authorUsername
         

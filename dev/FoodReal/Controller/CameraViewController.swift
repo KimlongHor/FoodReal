@@ -275,7 +275,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
         frontImage = image
         isBothImageCaptured = true
         
-        let meal = Meal(authorUsername: currUser.username, authorProfilePicture: currUser.profileImageURL, privateData: PrivateData(authorUserID: currUser.uid)) //<---- TODO: add profile picture later
+        let meal = Meal(authorUsername: currUser.username, authorProfilePicture: currUser.profileImageURL, privateData: PrivateData(authorUserID: currUser.authID)) //<---- TODO: add profile picture later
         
         // display captured images
         let containerView = PreviewPhotoContainerView()

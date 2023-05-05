@@ -27,7 +27,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var birthDateTextField: UITextField!
     
-    @IBOutlet weak var saveButton: UIButton!
+    private let saveButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .red
+        button.setTitle("Save", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
+        return button
+    }()
     
     var didChangeProfileImage = false
     var currUser: User
@@ -45,6 +55,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     fileprivate func setupView() {
@@ -82,9 +94,9 @@ class ProfileViewController: UIViewController {
         emailTextField.isUserInteractionEnabled = false
         birthDateTextField.text = "\(currUser.birthMonth!)/\(currUser.birthDay!)/\( currUser.birthYear!)"
         
-        saveButton.createRoundCorner(cornerRadius: 10)
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(.white, for: .normal)
+        view.addSubview(saveButton)
+        saveButton.anchor(top: birthDateTextField.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 100, left: 10, bottom: 0, right: 10), size: .init(width: 0, height: 50))
+//        saveButton.addTarget(self, action: #selector(didTapSaveButton), for: .touchUpInside)
     }
     
     fileprivate func setGestureRecognizerForProfileImageEditting() -> UITapGestureRecognizer {
@@ -136,7 +148,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func saveButtonPressed(_ sender: Any) {
+    @objc func didTapSaveButton() {
+        print("Tap Save Button")
         if (isEmpty(textField: fullNameTextField)) {
             view.presentPopUp(with: "Invalid full name")
             return
@@ -192,6 +205,20 @@ class ProfileViewController: UIViewController {
             return true
         } else {
             return false
+        }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height - 100
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
     }
 }

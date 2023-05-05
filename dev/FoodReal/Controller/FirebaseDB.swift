@@ -139,6 +139,7 @@ class FirebaseDB {
             } else {
                 do {
                     for document in snapshot!.documents {
+                        print("HERE \(document.documentID) -> \(document.data())")
                         db.collection(mealsRef).document(document.documentID).updateData([
                             "authorProfilePicture" : authProfileImageURL,
                             "authorUsername" : authUsername

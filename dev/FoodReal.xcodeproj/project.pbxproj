@@ -33,6 +33,7 @@
 		D146E922298A415400845BA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D146E921298A415400845BA5 /* Assets.xcassets */; };
 		D146E925298A415400845BA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D146E923298A415400845BA5 /* LaunchScreen.storyboard */; };
 		D148BFDF299303CB002BC463 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148BFDE299303CB002BC463 /* UIViewExtensions.swift */; };
+		D15CA7722A072635001F8F35 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15CA7712A072635001F8F35 /* UIViewControllerExtensions.swift */; };
 		D1707C6029E33C2A002486AA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1707C5F29E33C2A002486AA /* ProfileViewController.swift */; };
 		D19391FB299C42FA00A17F20 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19391FA299C42FA00A17F20 /* StringExtensions.swift */; };
 		D19702E529F5EA1D00002602 /* uploading.json in Resources */ = {isa = PBXBuildFile; fileRef = D19702E429F5EA1D00002602 /* uploading.json */; };
@@ -77,6 +78,7 @@
 		D146E924298A415400845BA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D146E926298A415400845BA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D148BFDE299303CB002BC463 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		D15CA7712A072635001F8F35 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		D1707C5F29E33C2A002486AA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D19391FA299C42FA00A17F20 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		D19702E429F5EA1D00002602 /* uploading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = uploading.json; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				D19391FA299C42FA00A17F20 /* StringExtensions.swift */,
 				D117F09929E5F93D0057046C /* Alerts.swift */,
 				D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */,
+				D15CA7712A072635001F8F35 /* UIViewControllerExtensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				375CA84D29B84A3100EE3106 /* User.swift in Sources */,
 				D117F09A29E5F93D0057046C /* Alerts.swift in Sources */,
 				37D786D629E029FB004E7F42 /* SignInEmailViewController.swift in Sources */,
+				D15CA7722A072635001F8F35 /* UIViewControllerExtensions.swift in Sources */,
 				3712939A2999BDC60030E49F /* Meal.swift in Sources */,
 				37BABCA629F85E820063FD08 /* PostDetailViewController.swift in Sources */,
 				D146E91B298A415400845BA5 /* SceneDelegate.swift in Sources */,

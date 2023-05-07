@@ -32,14 +32,14 @@ extension UIView {
 }
 
 extension UIView {
-    func presentPopUp(with message: String) {
+    func presentPopUp(with message: String, backgroundColor: UIColor? = UIColor(white: 0, alpha: 0.3)) {
         DispatchQueue.main.async {
             let savedLabel = UILabel()
             savedLabel.text = message
             savedLabel.font = UIFont.boldSystemFont(ofSize: 18)
             savedLabel.textColor = .white
             savedLabel.numberOfLines = 0
-            savedLabel.backgroundColor = UIColor(white: 0, alpha: 0.3)
+            savedLabel.backgroundColor = backgroundColor
             savedLabel.textAlignment = .center
             savedLabel.createRoundCornerForLabel(cornerRadius: 15)
             savedLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width - 50, height: 80)

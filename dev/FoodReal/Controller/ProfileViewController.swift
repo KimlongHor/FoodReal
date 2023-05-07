@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Lottie
 
 protocol ProfileViewDelegate {
     func didFinishUpdatingUserProfile(updatedCurrUser: User)
@@ -26,6 +27,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var birthDateTextField: UITextField!
+    
+    var loadingView: LottieAnimationView?
+    var animationView = UIView(backgroundColor: .black)
     
     private let saveButton: UIButton = {
         let button = UIButton()
@@ -57,6 +61,7 @@ class ProfileViewController: UIViewController {
         setupView()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        self.setupToHideKeyboardOnTapOnView()
     }
     
     fileprivate func setupView() {
@@ -150,6 +155,7 @@ class ProfileViewController: UIViewController {
     
     @objc func didTapSaveButton() {
         print("Tap Save Button")
+        view.endEditing(true)
         if (isEmpty(textField: fullNameTextField)) {
             view.presentPopUp(with: "Invalid full name")
             return
@@ -158,6 +164,7 @@ class ProfileViewController: UIViewController {
             return
         }
         
+        setupAnimationViews()
         self.currUser.name = self.fullNameTextField.text
         self.currUser.username = self.usernameTextField.text
         
@@ -220,6 +227,19 @@ class ProfileViewController: UIViewController {
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
         }
+    }
+    
+    fileprivate func setupAnimationViews() {
+        loadingView = .init(name: "loading")
+        loadingView?.loopMode = .loop
+        loadingView?.play()
+        loadingView?.contentMode = .scaleAspectFit
+        loadingView?.backgroundColor = .black
+        loadingView?.translatesAutoresizingMaskIntoConstraints = false
+        animationView.addSubview(loadingView ?? UIView(backgroundColor: .black))
+        loadingView?.anchor(top: animationView.topAnchor, leading: animationView.leadingAnchor, bottom: animationView.bottomAnchor, trailing: animationView.trailingAnchor, padding: .init(top: 100, left: 100, bottom: 100, right: 100))
+        view.addSubview(animationView)
+        animationView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
 

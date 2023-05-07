@@ -90,7 +90,7 @@ class SettingViewController: UIViewController {
         settings.append(Section(title: "FEATURES", options: [.settingCell(model: SettingsOption(title: "Memories", icon: UIImage(systemName: "calendar"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
         
         settings.append(Section(title: "SETTINGS", options: [
-            .settingCell(model: SettingsOption(title: "Notifications", icon: UIImage(named: "notification"), handle: {})),
+            .settingCell(model: SettingsOption(title: "Notifications", icon: UIImage(named: "notification"), handle: {self.presentNotificationVC()})),
             .settingCell(model: SettingsOption(title: "Privacy", icon: UIImage(named: "privacy"), handle: {self.view.presentPopUp(with: "Coming soon")})),
             .settingCell(model: SettingsOption(title: "Time Zone: Americas", icon: UIImage(named: "time-zone"), handle: {self.view.presentPopUp(with: "Coming soon")})),
             .settingCell(model: SettingsOption(title: "Other", icon: UIImage(named: "other"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
@@ -100,6 +100,11 @@ class SettingViewController: UIViewController {
             .settingCell(model: SettingsOption(title: "Rate FoodReal", icon: UIImage(named: "rate"), handle: {self.view.presentPopUp(with: "Coming soon")})),
             .settingCell(model: SettingsOption(title: "Help", icon: UIImage(named: "help"), handle: {self.view.presentPopUp(with: "Coming soon")})),
             .settingCell(model: SettingsOption(title: "About", icon: UIImage(named: "about"), handle: {self.view.presentPopUp(with: "Coming soon")}))]))
+    }
+    
+    fileprivate func presentNotificationVC() {
+        let notificationVC = NotificationViewController()
+        navigationController?.pushViewController(notificationVC, animated: true)
     }
 
     fileprivate func setupView() {

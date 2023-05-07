@@ -43,6 +43,7 @@
 		D1C44495299D60270063206B /* PostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1C44493299D60270063206B /* PostCollectionViewCell.xib */; };
 		D1C44497299D625C0063206B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C44496299D625C0063206B /* SettingViewController.swift */; };
 		D1C50C6529F1E65D00F0F4BD /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */; };
+		D1F4B83B2A0865E8004975B8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F4B83A2A0865E8004975B8 /* NotificationViewController.swift */; };
 		D1FCDE0529DDE36F001810E3 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */; };
 		D1FCDE0629DDE36F001810E3 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		D1C44493299D60270063206B /* PostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostCollectionViewCell.xib; sourceTree = "<group>"; };
 		D1C44496299D625C0063206B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		D1C50C6429F1E65D00F0F4BD /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		D1F4B83A2A0865E8004975B8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		D1FCDE0329DDE36F001810E3 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		D1FCDE0429DDE36F001810E3 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +216,7 @@
 				D1169DDC299EDC8C004CD72B /* CameraViewController.swift */,
 				D1707C5F29E33C2A002486AA /* ProfileViewController.swift */,
 				37BABCA529F85E820063FD08 /* PostDetailViewController.swift */,
+				D1F4B83A2A0865E8004975B8 /* NotificationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				375CA84429B847DB00EE3106 /* OnboardingNameViewController.swift in Sources */,
 				D126275D29A9EE7E00581BD9 /* PreviewPhotoContainerView.swift in Sources */,
 				375CA84829B847DB00EE3106 /* OnboardingPasswordViewController.swift in Sources */,
+				D1F4B83B2A0865E8004975B8 /* NotificationViewController.swift in Sources */,
 				375CA84329B847DB00EE3106 /* OnboardingNotificationViewController.swift in Sources */,
 				D1C44494299D60270063206B /* PostCollectionViewCell.swift in Sources */,
 				D1C44497299D625C0063206B /* SettingViewController.swift in Sources */,

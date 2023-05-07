@@ -86,7 +86,10 @@ class PostCollectionViewCell: UICollectionViewCell {
             self.userImageView.image = UIImage(named: "cat")
         }
         
-        timeLabel.text = meals[index].dateTime?.description
+        guard let time = meals[index].dateTime else {return}
+        let format = time.getFormattedDate(format: "MMM d, h:mm a")
+        
+        timeLabel.text = format
         nameLabel.text = meals[index].authorUsername
         
         if let likeUsers = meals[index].likes {

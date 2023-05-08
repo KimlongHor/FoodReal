@@ -295,8 +295,8 @@ extension PostingWallViewController: FeedDelegate {
 }
 
 extension PostingWallViewController: DescriptionDelegate {
-    func didPressDescription(postContent: UIView) {
-        let postDetailsVC =  PostDetailViewController()
+    func didPressDescription(meal: Meal) {
+        let postDetailsVC =  PostDetailViewController(meal: meal)
         navigationController?.pushViewController(postDetailsVC, animated: true)
     }
 }

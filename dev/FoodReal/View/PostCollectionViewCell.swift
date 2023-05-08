@@ -13,7 +13,7 @@ protocol FeedDelegate {
 }
 
 protocol DescriptionDelegate {
-    func didPressDescription(postContent: UIView)
+    func didPressDescription(meal: Meal)
 }
 
 class PostCollectionViewCell: UICollectionViewCell {
@@ -112,7 +112,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func didTapDescriptionButton(_ sender: Any) {
-        descriptionDelegate.didPressDescription(postContent: postContentView)
+        descriptionDelegate.didPressDescription(meal: meals[index])
     }
     
     private func finishUpdatingLikesInDB(_ error: Error?) {

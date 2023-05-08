@@ -149,6 +149,16 @@ class FirebaseDB {
         }
     }
     
+    static func updateDescription(meal: Meal?, description: String, completion: @escaping (_ error: Error?)->()) {
+        guard let meal = meal else {
+            print("Invalid meal and user")
+            return
+        }
+        db.collection(mealsRef).document(meal.id!).updateData(["description": description]) { error in
+            completion(error)
+        }
+    }
+    
     static func saveImageToFirebase(imageView: UIImageView, completion: @escaping (_ url: String)->()) {
         let filename = UUID().uuidString
         let ref = Storage.storage().reference(withPath: "/images/\(filename)")

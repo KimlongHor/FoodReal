@@ -17,7 +17,7 @@ class NotificationViewController: UIViewController {
     }
     
     fileprivate func setupView() {
-        let instructionLabel = UILabel(text: "To enable to disable the notificaiton: ", font: .systemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
+        let instructionLabel = UILabel(text: "To enable or disable the notificaiton: ", font: .systemFont(ofSize: 20), textColor: .white, textAlignment: .center, numberOfLines: 0)
         
         let pathLabel = UILabel(text: "Setting > FoodReal > Notifications", font: .systemFont(ofSize: 22, weight: .semibold), textColor: .white, textAlignment: .center, numberOfLines: 0)
         

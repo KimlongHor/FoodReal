@@ -71,13 +71,18 @@ class CameraViewController: UIViewController {
     let retakeButton: UIButton = {
         let button = UIButton()
         button.setTitle("Retake", for: .normal)
-        button.tintColor = .white
+        button.tintColor = .black
+        button.setTitleColor(.black, for: .normal)
+        button.backgroundColor = .white
+        button.createRoundCorner(cornerRadius: 14)
         button.addTarget(self, action: #selector(handleRetake), for: .touchUpInside)
         button.isHidden = true
         return button
     }()
     
     @objc fileprivate func handleRetake() {
+        shutterButton.isHidden = false
+        switchCameraButton.isHidden = false
         print("retake pressed.")
         retakeButton.isHidden = true
         guard let previewContainerView = previewContainerView else {return}
@@ -198,8 +203,7 @@ class CameraViewController: UIViewController {
         switchCameraButton.anchor(top: nil, leading: shutterButton.trailingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: leftPadding, bottom: 120, right: 0), size: .init(width: 35, height: 35))
         
         view.addSubview(retakeButton)
-        let rightPadding = (view.frame.width/4) - (shutterButton.frame.width) - 45
-        retakeButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: shutterButton.leadingAnchor, padding: .init(top: 0, left: 0, bottom: 120, right: rightPadding), size: .init(width: 0, height: 0))
+        retakeButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 15, bottom: 120, right: 15), size: .init(width: 0, height: 50))
     }
     
     @objc fileprivate func switchCameraButtonPressed() {
@@ -232,6 +236,9 @@ class CameraViewController: UIViewController {
     }
     
     @objc fileprivate func takePhotoButtonPressed() {
+        shutterButton.isHidden = true
+        switchCameraButton.isHidden = true
+        
         if !backCameraOn {
             switchCameraButtonPressed()
         }

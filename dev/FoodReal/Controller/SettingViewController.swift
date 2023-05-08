@@ -155,6 +155,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case .settingCell(let model):
             let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell", for: indexPath) as! SettingTableViewCell
             cell.setupView(with: model)
+            cell.selectionStyle = .none
             return cell
         case .profileCell(let model):
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileTableViewCell

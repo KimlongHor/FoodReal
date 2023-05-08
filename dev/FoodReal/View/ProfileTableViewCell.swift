@@ -36,6 +36,8 @@ class ProfileTableViewCell: UITableViewCell {
         
         if let url = URL(string: model.profileImageURL ?? "") {
             profileImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
+        } else {
+            profileImageView.image = UIImage(named: "user")
         }
     }
 }

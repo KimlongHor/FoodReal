@@ -43,6 +43,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     fileprivate func setupView() {
         userImageView.createRoundCorner(cornerRadius: userImageView.frame.height / 2)
+        userImageView.backgroundColor = .white
         frontImageView.createRoundCorner(cornerRadius: 18)
         backImageView.createRoundCorner(cornerRadius: 18)
 
@@ -83,7 +84,7 @@ class PostCollectionViewCell: UICollectionViewCell {
         if let url = URL(string: meals[index].authorProfilePicture ?? "") {
             self.userImageView.sd_setImage(with: url, placeholderImage: nil, options: .continueInBackground)
         } else {
-            self.userImageView.image = UIImage(named: "cat")
+            self.userImageView.image = UIImage(named: "user")
         }
         
         guard let time = meals[index].dateTime else {return}

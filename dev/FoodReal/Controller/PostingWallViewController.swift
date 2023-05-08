@@ -228,7 +228,7 @@ extension PostingWallViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
-        let height = self.view.frame.height - self.view.frame.height/3.5
+        let height = self.view.frame.height - self.view.frame.height/3
         return .init(width: width, height: height)
     }
     

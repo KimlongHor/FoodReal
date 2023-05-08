@@ -68,7 +68,21 @@ class SignInPasswordViewController: UIViewController {
         return signInButton
     }()
     
+    private let backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(.init(named: "cancel_shadow"), for: .normal)
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func didTapBackButton() {
+        self.dismiss(animated: true)
+    }
+    
     private func addConstraints() {
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 10, left: 15, bottom: 0, right: 0), size: .init(width: 50, height: 50))
         if #available(iOS 15.0, *) {
             NSLayoutConstraint.activate([
                 // header

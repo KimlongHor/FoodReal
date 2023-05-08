@@ -73,8 +73,10 @@ class ProfileViewController: UIViewController {
         
         if let url = URL(string: currUser.profileImageURL ?? "") {
             profileImageView.sd_setImage(with: url, placeholderImage: nil, options: .highPriority)
+        } else {
+            profileImageView.image = UIImage(named: "user")
         }
-        
+         
         cameraImageView.backgroundColor = .white
         cameraImageView.createRoundCorner(cornerRadius: cameraImageView.frame.height / 2)
         cameraContainerView.createRoundCorner(cornerRadius: cameraContainerView.frame.height / 2)
